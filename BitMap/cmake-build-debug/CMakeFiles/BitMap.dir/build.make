@@ -43,10 +43,10 @@ RM = /opt/clion/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap
+CMAKE_SOURCE_DIR = /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug
+CMAKE_BINARY_DIR = /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/BitMap.dir/depend.make
@@ -59,94 +59,94 @@ include CMakeFiles/BitMap.dir/flags.make
 
 CMakeFiles/BitMap.dir/expand.c.o: CMakeFiles/BitMap.dir/flags.make
 CMakeFiles/BitMap.dir/expand.c.o: ../expand.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/BitMap.dir/expand.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/expand.c.o   -c /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/expand.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/BitMap.dir/expand.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/expand.c.o   -c /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.c
 
 CMakeFiles/BitMap.dir/expand.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BitMap.dir/expand.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/expand.c > CMakeFiles/BitMap.dir/expand.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.c > CMakeFiles/BitMap.dir/expand.c.i
 
 CMakeFiles/BitMap.dir/expand.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BitMap.dir/expand.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/expand.c -o CMakeFiles/BitMap.dir/expand.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.c -o CMakeFiles/BitMap.dir/expand.c.s
 
 CMakeFiles/BitMap.dir/main.c.o: CMakeFiles/BitMap.dir/flags.make
 CMakeFiles/BitMap.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/BitMap.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/main.c.o   -c /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/BitMap.dir/main.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/main.c.o   -c /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/main.c
 
 CMakeFiles/BitMap.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BitMap.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/main.c > CMakeFiles/BitMap.dir/main.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/main.c > CMakeFiles/BitMap.dir/main.c.i
 
 CMakeFiles/BitMap.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BitMap.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/main.c -o CMakeFiles/BitMap.dir/main.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/main.c -o CMakeFiles/BitMap.dir/main.c.s
 
 CMakeFiles/BitMap.dir/output.c.o: CMakeFiles/BitMap.dir/flags.make
 CMakeFiles/BitMap.dir/output.c.o: ../output.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/BitMap.dir/output.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/output.c.o   -c /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/output.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/BitMap.dir/output.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/output.c.o   -c /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.c
 
 CMakeFiles/BitMap.dir/output.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BitMap.dir/output.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/output.c > CMakeFiles/BitMap.dir/output.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.c > CMakeFiles/BitMap.dir/output.c.i
 
 CMakeFiles/BitMap.dir/output.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BitMap.dir/output.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/output.c -o CMakeFiles/BitMap.dir/output.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.c -o CMakeFiles/BitMap.dir/output.c.s
 
 CMakeFiles/BitMap.dir/buildStruct.c.o: CMakeFiles/BitMap.dir/flags.make
 CMakeFiles/BitMap.dir/buildStruct.c.o: ../buildStruct.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/BitMap.dir/buildStruct.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/buildStruct.c.o   -c /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/buildStruct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/BitMap.dir/buildStruct.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/buildStruct.c.o   -c /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.c
 
 CMakeFiles/BitMap.dir/buildStruct.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BitMap.dir/buildStruct.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/buildStruct.c > CMakeFiles/BitMap.dir/buildStruct.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.c > CMakeFiles/BitMap.dir/buildStruct.c.i
 
 CMakeFiles/BitMap.dir/buildStruct.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BitMap.dir/buildStruct.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/buildStruct.c -o CMakeFiles/BitMap.dir/buildStruct.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.c -o CMakeFiles/BitMap.dir/buildStruct.c.s
 
 CMakeFiles/BitMap.dir/build24BitStruct.c.o: CMakeFiles/BitMap.dir/flags.make
 CMakeFiles/BitMap.dir/build24BitStruct.c.o: ../build24BitStruct.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/BitMap.dir/build24BitStruct.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/build24BitStruct.c.o   -c /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/build24BitStruct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/BitMap.dir/build24BitStruct.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/build24BitStruct.c.o   -c /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build24BitStruct.c
 
 CMakeFiles/BitMap.dir/build24BitStruct.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BitMap.dir/build24BitStruct.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/build24BitStruct.c > CMakeFiles/BitMap.dir/build24BitStruct.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build24BitStruct.c > CMakeFiles/BitMap.dir/build24BitStruct.c.i
 
 CMakeFiles/BitMap.dir/build24BitStruct.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BitMap.dir/build24BitStruct.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/build24BitStruct.c -o CMakeFiles/BitMap.dir/build24BitStruct.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build24BitStruct.c -o CMakeFiles/BitMap.dir/build24BitStruct.c.s
 
 CMakeFiles/BitMap.dir/build8BitStruct.c.o: CMakeFiles/BitMap.dir/flags.make
 CMakeFiles/BitMap.dir/build8BitStruct.c.o: ../build8BitStruct.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/BitMap.dir/build8BitStruct.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/build8BitStruct.c.o   -c /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/build8BitStruct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/BitMap.dir/build8BitStruct.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/build8BitStruct.c.o   -c /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.c
 
 CMakeFiles/BitMap.dir/build8BitStruct.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BitMap.dir/build8BitStruct.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/build8BitStruct.c > CMakeFiles/BitMap.dir/build8BitStruct.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.c > CMakeFiles/BitMap.dir/build8BitStruct.c.i
 
 CMakeFiles/BitMap.dir/build8BitStruct.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BitMap.dir/build8BitStruct.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/build8BitStruct.c -o CMakeFiles/BitMap.dir/build8BitStruct.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.c -o CMakeFiles/BitMap.dir/build8BitStruct.c.s
 
 CMakeFiles/BitMap.dir/analyse.c.o: CMakeFiles/BitMap.dir/flags.make
 CMakeFiles/BitMap.dir/analyse.c.o: ../analyse.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/BitMap.dir/analyse.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/analyse.c.o   -c /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/analyse.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/BitMap.dir/analyse.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BitMap.dir/analyse.c.o   -c /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/analyse.c
 
 CMakeFiles/BitMap.dir/analyse.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BitMap.dir/analyse.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/analyse.c > CMakeFiles/BitMap.dir/analyse.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/analyse.c > CMakeFiles/BitMap.dir/analyse.c.i
 
 CMakeFiles/BitMap.dir/analyse.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BitMap.dir/analyse.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/analyse.c -o CMakeFiles/BitMap.dir/analyse.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/analyse.c -o CMakeFiles/BitMap.dir/analyse.c.s
 
 # Object files for target BitMap
 BitMap_OBJECTS = \
@@ -170,7 +170,7 @@ BitMap: CMakeFiles/BitMap.dir/build8BitStruct.c.o
 BitMap: CMakeFiles/BitMap.dir/analyse.c.o
 BitMap: CMakeFiles/BitMap.dir/build.make
 BitMap: CMakeFiles/BitMap.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable BitMap"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable BitMap"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/BitMap.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -183,6 +183,6 @@ CMakeFiles/BitMap.dir/clean:
 .PHONY : CMakeFiles/BitMap.dir/clean
 
 CMakeFiles/BitMap.dir/depend:
-	cd /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/BitMap.dir/depend
 

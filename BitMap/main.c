@@ -13,7 +13,7 @@ int main(int argc, char const *argv[]) {
   struct tagBitMap24Bit *picture24Bit = NULL;
 
   /* build struct */
-  buildingStruct("testBilder/testBilder/6x10_8_bit_nicht_komprimiert_mit_padding_bytes.bmp", picture8Bit, picture24Bit);
+  buildingStruct("testBilder/testBilder/640x480_IM_HEADER_biWidth_viel_zu_goss_8_bit_komprimiert.bmp", picture8Bit, picture24Bit);
 
   printf("%d\n", picture8Bit);
   /* print struct */
@@ -28,6 +28,9 @@ int main(int argc, char const *argv[]) {
       printBitMap24BitPicture(picture24Bit);
   } else {
     printf("Irgendwas ist schief gelaufen\n");
+
+
+
   }
 
   /* analyse Struct */

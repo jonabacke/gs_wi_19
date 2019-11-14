@@ -44,10 +44,10 @@ RM = /opt/clion/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap
+CMAKE_SOURCE_DIR = /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug
+CMAKE_BINARY_DIR = /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ preinstall:
 CMakeFiles/BitMap.dir/all:
 	$(MAKE) -f CMakeFiles/BitMap.dir/build.make CMakeFiles/BitMap.dir/depend
 	$(MAKE) -f CMakeFiles/BitMap.dir/build.make CMakeFiles/BitMap.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target BitMap"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target BitMap"
 .PHONY : CMakeFiles/BitMap.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/BitMap.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BitMap.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/BitMap.dir/rule
 
 # Convenience name for target.

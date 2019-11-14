@@ -1,4 +1,4 @@
-# Install script for directory: /home/jonathan/Dokumente/HAW/gs_wi_19/BitMap
+# Install script for directory: /home/jonathan/Dokumente/HAW/GS_WI_19/BitMap
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

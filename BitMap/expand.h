@@ -7,10 +7,10 @@
 #define expand
 
 
-void endOfLine(uint16_t* x, uint16_t* y);
-void endOfBitmap(uint8_t*);
-void deltaMove(uint16_t* x, uint16_t* y, uint16_t xMove, uint16_t yMove);
-void absoluteMode(uint16_t* x, uint16_t* y, uint8_t* buffer, uint16_t colorUsed, struct tagBitMap8Bit* picture, uint16_t width);
-void writeInPixelBuffer(uint16_t* x, uint16_t* y, uint8_t amount, uint8_t value, struct tagBitMap8Bit* picture, uint16_t width);
+void endOfLine(int32_t * x, int32_t * y);
+void endOfBitmap(int8_t*);
+void deltaMove(int32_t * x, int32_t * y, int32_t xMove, int32_t yMove);
+void absoluteMode(int32_t * x, int32_t * y, uint8_t* buffer, int32_t colorUsed, struct tagBitMap8Bit* picture, int32_t width, int32_t * bufferPointer);
+void writeInPixelBuffer(int32_t * x, int32_t * y, uint8_t amount, uint8_t value, struct tagBitMap8Bit* picture, int32_t width);
 
 #endif

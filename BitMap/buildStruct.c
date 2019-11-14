@@ -48,7 +48,7 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
 
 }
 
-static uint8_t writeBuffer(uint8_t *fileNamePicture, uint16_t size) {
+static uint8_t writeBuffer(uint8_t *fileNamePicture, int16_t size) {
     uint32_t i = 0;
     uint8_t counter = 0;
     uint8_t isRight = 0;

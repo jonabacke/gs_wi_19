@@ -2,28 +2,29 @@
 #include "stdint.h"
 #include <stdio.h>
 
-void endOfLine(uint16_t *x, uint16_t *y) {
+void endOfLine(int32_t *x, int32_t *y) {
     *x = 0;
-    *y = *y + 1;
+    *y = *y - 1;
     printf("endOfLine\n");
 
 }
 
-void endOfBitmap(uint8_t *isNotFinished) {
+void endOfBitmap(int8_t *isNotFinished) {
     *isNotFinished = 0;
     printf("endOfBitmap\n");
 }
 
-void deltaMove(uint16_t *x, uint16_t *y, uint16_t moveX, uint16_t moveY) {
+void deltaMove(int32_t *x, int32_t *y, int32_t moveX, int32_t moveY) {
     *x = *x + moveX;
     *y = *y + moveY;
     printf("deltaMove\n");
 }
 
-void absoluteMode(uint16_t* x, uint16_t* y, uint8_t* buffer, uint16_t colorUsed, struct tagBitMap8Bit* picture, uint16_t width) {
+void absoluteMode(int32_t * x, int32_t * y, uint8_t* buffer, int32_t colorUsed, struct tagBitMap8Bit* picture, int32_t width, int32_t *bufferPointer) {
     uint32_t offset = colorUsed + 54 + 2;
-    while (buffer [offset + *x + *y * width] != 0) {
-        picture -> pixel[*x][*y] = buffer[offset + *x + *y];
+    while (buffer [offset + *bufferPointer] != 0) {
+        picture -> pixel[*x][*y] = buffer[offset + *bufferPointer];
+        *bufferPointer += 1;
         *x++;
         if (*x == width) {
             *x = 0;
@@ -33,13 +34,13 @@ void absoluteMode(uint16_t* x, uint16_t* y, uint8_t* buffer, uint16_t colorUsed,
     printf("absoluteMode\n");
 }
 
-void writeInPixelBuffer(uint16_t* x, uint16_t* y, uint8_t amount, uint8_t value, struct tagBitMap8Bit* picture, uint16_t width) {
-    while (amount < 0) {
-        picture -> pixel[*x][*y] = value;
-        *x++;
+void writeInPixelBuffer(int32_t * x, int32_t * y, uint8_t amount, uint8_t value, struct tagBitMap8Bit* picture, int32_t width) {
+    while (amount > 0) {
+        picture -> pixel[*y][*x] = value;
+        *x = *x + 1;
         if (*x == width) {
             *x = 0;
-            *y++;
+            *y = *y - 1;
         }
         amount--;
     }

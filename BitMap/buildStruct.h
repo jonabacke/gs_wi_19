@@ -10,7 +10,7 @@
 
 uint8_t buildingStruct(uint8_t*, struct tagBitMap8Bit*, struct tagBitMap24Bit*);
 
-static uint8_t writeBuffer(uint8_t *, uint16_t);
+static uint8_t writeBuffer(uint8_t *, int16_t);
 
 static uint8_t buildFileHeader();
 
