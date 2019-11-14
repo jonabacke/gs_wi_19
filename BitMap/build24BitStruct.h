@@ -1,0 +1,8 @@
+//
+// Created by jonathan on 13.11.19.
+//
+
+#ifndef BITMAP_BUILD24BITSTRUCT_H
+#define BITMAP_BUILD24BITSTRUCT_H
+
+#endif //BITMAP_BUILD24BITSTRUCT_H

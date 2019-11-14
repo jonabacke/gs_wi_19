@@ -1,0 +1,27 @@
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  "C"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_C
+  "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/analyse.c" "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/analyse.c.o"
+  "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/build24BitStruct.c" "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/build24BitStruct.c.o"
+  "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/build8BitStruct.c" "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/build8BitStruct.c.o"
+  "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/buildStruct.c" "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/buildStruct.c.o"
+  "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/expand.c" "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/expand.c.o"
+  "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/main.c" "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/main.c.o"
+  "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/output.c" "/home/jonathan/Dokumente/HAW/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/output.c.o"
+  )
+set(CMAKE_C_COMPILER_ID "GNU")
+
+# The include file search paths:
+set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../."
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")
