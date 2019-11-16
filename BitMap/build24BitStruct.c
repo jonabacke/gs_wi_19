@@ -10,25 +10,30 @@
 #include <malloc.h>
 
 uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, uint8_t *buffer) {
-
+/*
     //Bildhoehe und -breite aus infoHeader auslesen
     static int32_t width = 0;
     static int32_t height = 0;
-    static int32_t buffersize = 0;
+    static int32_t bufferSize = 0;
 
-    width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
+
+    if (picture24Bit->infoHeader.biWidth % 4 == 0){
+        width = picture24Bit -> infoHeader.biWidth;
+    } else {
+        width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
+    }
     height = picture24Bit -> infoHeader.biHeight;
-    buffersize = sizeof(buffer)-54; //54 Byte vom Header
+    bufferSize = sizeof(buffer)-54; //54 Byte vom Header
 
     //Array vom Typ "struct tagRGBTriple" mit RGB-Werten aus dem Buffer fuellen
-    struct tagRGBTriple picRGB[buffersize/3];
+    struct tagRGBTriple picRGB[bufferSize/3];
 
     picture24Bit -> pixel = (tagRGBTriple **)malloc(buffersize/3);
     for (int i = 0; i < height; ++i) {
         picture24Bit -> pixel[i] = (uint8_t*) malloc(width);
     }
 
-    for (int32_t i = 0, j = 0; i < buffersize/3, j < buffersize; i++, j + 3) {
+    for (int32_t i = 0, j = 0; i < bufferSize/3, j < bufferSize; i++, j + 3) {
         picRGB[i].rgbBlue = buffer[j];
         picRGB[i].rgbGreen = buffer[j+1];
         picRGB[i].rgbRed = buffer[j+2];
@@ -42,6 +47,6 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, uint8_t *buf
             }
         }
     }
-
+*/
     return 0;
 }

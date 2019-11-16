@@ -48,7 +48,11 @@ void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit) {
     printf("HALLO1\n");
     int32_t width = 0;
     printf("HALLO2\n");
-    width = picture8Bit -> infoHeader.biWidth + 4 - picture8Bit -> infoHeader.biWidth % 4;
+    if (picture8Bit->infoHeader.biWidth % 4 == 0){
+        width = picture8Bit -> infoHeader.biWidth;
+    } else {
+        width = picture8Bit -> infoHeader.biWidth + 4 - picture8Bit -> infoHeader.biWidth % 4;
+    }
     printf("HALLO3\n");
     for (int32_t i = picture8Bit->infoHeader.biHeight - 1; i >= 0; i--) {
         for (int32_t j = 0; j < width; j++) {

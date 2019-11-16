@@ -7,9 +7,8 @@
 #ifndef BITMAP_ANALYSE_H
 #define BITMAP_ANALYSE_H
 
-int32_t countRect(struct tagBitMap8Bit *picture8Bit);
-void findRect(struct tagBitMap8Bit *picture8Bit, struct tagRect *rect);
-void getColor(struct tagBitMap8Bit *picture8Bit, struct tagRect *rect);
+int32_t getRect(struct tagBitMap8Bit *picture8Bit);
+struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_t , int32_t);
 
 
 #endif //BITMAP_ANALYSE_H

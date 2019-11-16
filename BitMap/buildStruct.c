@@ -8,6 +8,7 @@
 #include "general.h"
 #include "build8BitStruct.h"
 #include "output.h"
+#include "analyse.h"
 // #include "build24BitStruct.h"
 
 static FILE *filePointer;
@@ -44,6 +45,7 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
     printBitMapColorPalette(bitMap8Bit);
     printBitMap8BitPicture(bitMap8Bit);
     printf("buildingStruct\n");
+    countRect(bitMap8Bit);
     return 0;
 
 }
