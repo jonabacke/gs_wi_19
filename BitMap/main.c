@@ -6,14 +6,14 @@
 #include "output.h"
 
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char **argv) {
 
   /* Initialisiere Pointer */
   struct tagBitMap8Bit *picture8Bit = NULL;
   struct tagBitMap24Bit *picture24Bit = NULL;
-
+  printf("%s", argv[1]);
   /* build struct */
-  buildingStruct("testBilder/testBilder/640x480_IM_HEADER_biWidth_viel_zu_goss_8_bit_komprimiert.bmp", picture8Bit, picture24Bit);
+  buildingStruct(argv[1], picture8Bit, picture24Bit);
 
   printf("%d\n", picture8Bit);
   /* print struct */

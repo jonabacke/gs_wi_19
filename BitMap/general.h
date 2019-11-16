@@ -57,4 +57,19 @@ typedef struct tagBitMap24Bit {
   struct tagBitMapInfoHeader infoHeader;
   struct tagRGBTrible **pixel[];
 } bitMap24Bit;
+
+
+typedef struct tagPosition {
+    int32_t topLeft[2];
+    int32_t btmLeft[2];
+    int32_t topRight[2];
+    int32_t btmRight[2];
+} position;
+
+
+typedef struct tagRect {
+    struct tagPosition position;
+    int8_t color;
+    int32_t volume;
+} rect;
 #endif

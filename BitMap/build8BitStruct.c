@@ -44,8 +44,15 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
         colorUsed = picture8Bit -> infoHeader.biClrUsed;
     }
 
-    width = picture8Bit -> infoHeader.biWidth + 4 - picture8Bit -> infoHeader.biWidth % 4;
+    if (picture8Bit->infoHeader.biWidth % 4 == 0){
+        width = picture8Bit -> infoHeader.biWidth;
+    } else {
+        width = picture8Bit -> infoHeader.biWidth + 4 - picture8Bit -> infoHeader.biWidth % 4;
+    }
     height = picture8Bit -> infoHeader.biHeight;
+
+    printf(" width: %d", width);
+    printf(" height: %d", height);
 
     picture8Bit -> pixel = (uint8_t **)malloc(width * height);
     for (int i = 0; i < height; ++i) {

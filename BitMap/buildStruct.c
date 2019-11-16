@@ -39,8 +39,8 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
         //buildPictureArray(bitMap24Bit);
     }
     printf("%x \n", bitMap8Bit);
-    printBitMapInfoHeader(infoHeader);
     printBitMapFileHeader(fileHeader);
+    printBitMapInfoHeader(infoHeader);
     printBitMapColorPalette(bitMap8Bit);
     printBitMap8BitPicture(bitMap8Bit);
     printf("buildingStruct\n");
