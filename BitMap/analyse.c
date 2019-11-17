@@ -29,6 +29,7 @@ int32_t getRect(struct tagBitMap8Bit *picture8Bit) {
 
     for (int i = 0; i < height - 1; i++) {
         for (int j = 0; j < width - 1; ++j) {
+            if (isInRect(listHead, j, i));
             // TODO abfrage ob man innerhalb eines bereits gefundenen rects ist
             if (picture8Bit->pixel[j][i + 1] == color &&
                 picture8Bit->pixel[j + 1][i] == color &&
@@ -47,11 +48,15 @@ int32_t getRect(struct tagBitMap8Bit *picture8Bit) {
     return amount;
 }
 
+int8_t isInRect(struct tagRectListElement *istHead, int32_t x, int32_t y) {
+    
+    return 0;
+}
+
 struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_t x, int32_t y) {
     struct tagRectListElement *listElement;
     listElement = (struct tagRectListElement*) malloc(sizeof(struct tagRectListElement));
     listElement->rect = (struct tagRect*) malloc(sizeof(struct tagRect));
-    listElement->next = NULL;
     listElement->rect->color = 0;
     listElement->rect->position = (struct tagPosition*) malloc(sizeof(struct tagPosition));
     listElement->rect->position->btmLeft[0] = 0;
