@@ -6,101 +6,129 @@
 
 #IncludeRegexTransform: 
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/analyse.c
+C:/TI_Labor/github/gs_wi_19/BitMap/analyse.c
 analyse.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/analyse.h
+C:/TI_Labor/github/gs_wi_19/BitMap/analyse.h
+general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
+stdio.h
+C:/TI_Labor/github/gs_wi_19/BitMap/stdio.h
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/analyse.h
+C:/TI_Labor/github/gs_wi_19/BitMap/analyse.h
+general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
+stdio.h
+C:/TI_Labor/github/gs_wi_19/BitMap/stdio.h
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build24BitStruct.c
+C:/TI_Labor/github/gs_wi_19/BitMap/build24BitStruct.c
+buildStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/buildStruct.h
 build24BitStruct.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build24BitStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/build24BitStruct.h
+stdint.h
+C:/TI_Labor/github/gs_wi_19/BitMap/stdint.h
+stdio.h
+-
+general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
+output.h
+C:/TI_Labor/github/gs_wi_19/BitMap/output.h
+malloc.h
+-
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build24BitStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/build24BitStruct.h
+stdint.h
+-
+general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.c
+C:/TI_Labor/github/gs_wi_19/BitMap/build8BitStruct.c
 stdio.h
 -
 stdint.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/stdint.h
+C:/TI_Labor/github/gs_wi_19/BitMap/stdint.h
 malloc.h
 -
 build8BitStruct.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/build8BitStruct.h
 general.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 expand.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.h
+C:/TI_Labor/github/gs_wi_19/BitMap/expand.h
 output.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.h
+C:/TI_Labor/github/gs_wi_19/BitMap/output.h
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/build8BitStruct.h
 stdint.h
 -
 general.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.c
+C:/TI_Labor/github/gs_wi_19/BitMap/buildStruct.c
 buildStruct.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/buildStruct.h
 stdio.h
 -
 stdint.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/stdint.h
+C:/TI_Labor/github/gs_wi_19/BitMap/stdint.h
 general.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 build8BitStruct.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/build8BitStruct.h
 output.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.h
+C:/TI_Labor/github/gs_wi_19/BitMap/output.h
+analyse.h
+C:/TI_Labor/github/gs_wi_19/BitMap/analyse.h
+build24BitStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/build24BitStruct.h
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/buildStruct.h
 stdint.h
 -
 general.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.c
+C:/TI_Labor/github/gs_wi_19/BitMap/expand.c
 expand.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.h
+C:/TI_Labor/github/gs_wi_19/BitMap/expand.h
 stdint.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/stdint.h
+C:/TI_Labor/github/gs_wi_19/BitMap/stdint.h
 stdio.h
 -
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.h
+C:/TI_Labor/github/gs_wi_19/BitMap/expand.h
 stdint.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/stdint.h
+C:/TI_Labor/github/gs_wi_19/BitMap/stdint.h
 general.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 stdint.h
 -
 stdlib.h
 -
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/main.c
+C:/TI_Labor/github/gs_wi_19/BitMap/main.c
 stdio.h
 -
 general.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 expand.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.h
+C:/TI_Labor/github/gs_wi_19/BitMap/expand.h
 buildStruct.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.h
+C:/TI_Labor/github/gs_wi_19/BitMap/buildStruct.h
 output.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.h
+C:/TI_Labor/github/gs_wi_19/BitMap/output.h
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.c
+C:/TI_Labor/github/gs_wi_19/BitMap/output.c
 general.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 output.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.h
+C:/TI_Labor/github/gs_wi_19/BitMap/output.h
 stdio.h
 -
 
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.h
+C:/TI_Labor/github/gs_wi_19/BitMap/output.h
 general.h
-/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h
+C:/TI_Labor/github/gs_wi_19/BitMap/general.h
 

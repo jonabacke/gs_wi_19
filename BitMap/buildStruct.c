@@ -9,7 +9,7 @@
 #include "build8BitStruct.h"
 #include "output.h"
 #include "analyse.h"
-// #include "build24BitStruct.h"
+#include "build24BitStruct.h"
 
 static FILE *filePointer;
 static uint8_t *buffer = NULL;
@@ -37,7 +37,7 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
         bitMap24Bit = (struct tagBitMap24Bit *) malloc(fileHeader -> bsSize);
         bitMap24Bit -> fileHeader = *fileHeader;
         bitMap24Bit -> infoHeader = *infoHeader;
-        //buildPictureArray(bitMap24Bit);
+        build24BitPictureArray(bitMap24Bit, buffer);
     }
     printf("%x \n", bitMap8Bit);
     printBitMapFileHeader(fileHeader);
@@ -45,7 +45,7 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
     printBitMapColorPalette(bitMap8Bit);
     printBitMap8BitPicture(bitMap8Bit);
     printf("buildingStruct\n");
-    countRect(bitMap8Bit);
+    //countRect(bitMap8Bit);
     return 0;
 
 }

@@ -63,5 +63,5 @@ void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit) {
 }
 
 void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit) {
-
+    printf("HALLO24Bit\n");
 }

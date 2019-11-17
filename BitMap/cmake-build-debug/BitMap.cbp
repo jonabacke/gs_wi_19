@@ -8,119 +8,117 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug"/>
+				<Option working_dir="C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="BitMap">
-				<Option output="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/BitMap" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug"/>
+				<Option output="C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/BitMap.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/."/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/TI_Labor/github/gs_wi_19/BitMap/."/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/4.7.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/4.7.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/4.7.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 BitMap"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 BitMap"/>
+					<CompileFile command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="BitMap/fast">
-				<Option output="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/BitMap" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug"/>
+				<Option output="C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/BitMap.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/."/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/TI_Labor/github/gs_wi_19/BitMap/."/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/4.7.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/4.7.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/4.7.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 BitMap/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 BitMap/fast"/>
+					<CompileFile command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug"/>
+				<Option working_dir="C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw/bin/mingw32-make.exe -f &quot;C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/analyse.c">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/analyse.c">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/analyse.h">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/analyse.h">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build24BitStruct.c">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/build24BitStruct.c">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build24BitStruct.h">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/build24BitStruct.h">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.c">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/build8BitStruct.c">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.h">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/build8BitStruct.h">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.c">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/buildStruct.c">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.h">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/buildStruct.h">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.c">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/expand.c">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.h">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/expand.h">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/general.h">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/general.h">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/main.c">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/main.c">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.c">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/output.c">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.h">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/output.h">
 			<Option target="BitMap"/>
 		</Unit>
-		<Unit filename="/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/CMakeLists.txt">
+		<Unit filename="C:/TI_Labor/github/gs_wi_19/BitMap/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
