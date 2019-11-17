@@ -28,22 +28,15 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
     buffer = (uint8_t*) malloc(fileHeader -> bsSize);
     writeBuffer(fileNamePicture, fileHeader -> bsSize);
     if (infoHeader -> biBitCount == 8) {
-        bitMap8Bit = (struct tagBitMap8Bit *) malloc(fileHeader -> bsSize);
         bitMap8Bit -> fileHeader = *fileHeader;
         bitMap8Bit -> infoHeader = *infoHeader;
         buildPalette(bitMap8Bit, buffer);
         buildPictureArray(bitMap8Bit, buffer);
     } else if (infoHeader -> biBitCount == 24) {
-        bitMap24Bit = (struct tagBitMap24Bit *) malloc(fileHeader -> bsSize);
         bitMap24Bit -> fileHeader = *fileHeader;
         bitMap24Bit -> infoHeader = *infoHeader;
         build24BitPictureArray(bitMap24Bit, buffer);
     }
-    printf("%x \n", bitMap8Bit);
-    printBitMapFileHeader(fileHeader);
-    printBitMapInfoHeader(infoHeader);
-    printBitMapColorPalette(bitMap8Bit);
-    printBitMap8BitPicture(bitMap8Bit);
     printf("buildingStruct\n");
     //countRect(bitMap8Bit);
     return 0;

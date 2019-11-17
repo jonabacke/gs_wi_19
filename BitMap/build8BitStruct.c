@@ -50,14 +50,16 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
         width = picture8Bit -> infoHeader.biWidth + 4 - picture8Bit -> infoHeader.biWidth % 4;
     }
     height = picture8Bit -> infoHeader.biHeight;
-
+    printf("buildPalette\n");
     printf(" width: %d", width);
     printf(" height: %d", height);
 
+    printf("buildPalesfdtte\n");
     picture8Bit -> pixel = (uint8_t **)malloc(width * height);
     for (int i = 0; i < height; ++i) {
         picture8Bit -> pixel[i] = (uint8_t*) malloc(width);
     }
+    printf("buildPalette\n");
 
     if (picture8Bit -> infoHeader.biCompression == 0) {
         for (int32_t y = height - 1; y >= 0; y--) {
@@ -65,6 +67,7 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
                 picture8Bit -> pixel[y][x] = buffer[54 + colorUsed * 4 + y * width + x];
             }
         }
+        printf("buildPalette\n");
 
     } else {
         int32_t x = 0;
