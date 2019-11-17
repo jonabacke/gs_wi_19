@@ -27,20 +27,20 @@ int32_t getRect(struct tagBitMap8Bit *picture8Bit) {
 
     height = picture8Bit->infoHeader.biHeight;
 
-    for (int i = 0; i < height - 1; i++) {
-        for (int j = 0; j < width - 1; ++j) {
-            if (isInRect(listHead, j, i));
-            // TODO abfrage ob man innerhalb eines bereits gefundenen rects ist
-            if (picture8Bit->pixel[j][i + 1] == color &&
-                picture8Bit->pixel[j + 1][i] == color &&
-                picture8Bit->pixel[j + 1][i + 1]) {
-                while (listPointer->next != NULL) {
-                    listPointer = listPointer->next;
+    for (int32_t i = 0; i < height - 1; i++) {
+        for (int32_t j = 0; j < width - 1; j++) {
+            if (!isInRect(listHead, &j, i)) {
+                if (picture8Bit->pixel[j][i + 1] == color &&
+                    picture8Bit->pixel[j + 1][i] == color &&
+                    picture8Bit->pixel[j + 1][i + 1]) {
+                    while (listPointer->next != NULL) {
+                        listPointer = listPointer->next;
+                    }
+                    listPointer->next = makeNewRect(picture8Bit, j, i);
+                    amount++;
+                } else {
+                    color = picture8Bit->pixel[i][j + 1];
                 }
-                listPointer->next = makeNewRect(picture8Bit, j, i);
-                amount ++;
-            } else {
-                color = picture8Bit->pixel[i][j + 1];
             }
         }
     }
@@ -48,8 +48,16 @@ int32_t getRect(struct tagBitMap8Bit *picture8Bit) {
     return amount;
 }
 
-int8_t isInRect(struct tagRectListElement *istHead, int32_t x, int32_t y) {
-    
+int8_t isInRect(struct tagRectListElement *listHead, int32_t *x, int32_t y) {
+    struct tagRectListElement *listPointer = listHead;
+    while (listPointer->next != NULL) {
+        listPointer = listPointer->next;
+        if (x > listPointer->rect->position->topLeft[0] && x < listPointer->rect->position->topRight[0] &&
+            y > listPointer->rect->position->topRight[1] && y < listPointer->rect->position->btmRight[1]) {
+            *x = listPointer->rect->position->topRight[0];
+            return 1;
+        }
+    }
     return 0;
 }
 
