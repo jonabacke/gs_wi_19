@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/analyse.c" "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/analyse.c.o"
-  "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build24BitStruct.c" "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/build24BitStruct.c.o"
-  "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/build8BitStruct.c" "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/build8BitStruct.c.o"
-  "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/buildStruct.c" "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/buildStruct.c.o"
-  "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/expand.c" "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/expand.c.o"
-  "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/main.c" "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/main.c.o"
-  "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/output.c" "/home/jonathan/Dokumente/HAW/GS_WI_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/output.c.o"
+  "C:/TI_Labor/github/gs_wi_19/BitMap/analyse.c" "C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/analyse.c.obj"
+  "C:/TI_Labor/github/gs_wi_19/BitMap/build24BitStruct.c" "C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/build24BitStruct.c.obj"
+  "C:/TI_Labor/github/gs_wi_19/BitMap/build8BitStruct.c" "C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/build8BitStruct.c.obj"
+  "C:/TI_Labor/github/gs_wi_19/BitMap/buildStruct.c" "C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/buildStruct.c.obj"
+  "C:/TI_Labor/github/gs_wi_19/BitMap/expand.c" "C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/expand.c.obj"
+  "C:/TI_Labor/github/gs_wi_19/BitMap/main.c" "C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/main.c.obj"
+  "C:/TI_Labor/github/gs_wi_19/BitMap/output.c" "C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir/output.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
