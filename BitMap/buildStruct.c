@@ -17,6 +17,7 @@ static struct tagBitMapFileHeader *fileHeader = NULL;
 static struct tagBitMapInfoHeader *infoHeader = NULL;
 
 uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bit, struct tagBitMap24Bit* bitMap24Bit) {
+    int8_t result = 0;
     fileHeader = (struct tagBitMapFileHeader *) malloc(sizeof(struct tagBitMapFileHeader));
     infoHeader = (struct tagBitMapInfoHeader *) malloc(sizeof(struct tagBitMapInfoHeader));
     buffer = (uint8_t* ) malloc(54);
@@ -26,7 +27,10 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
     free(buffer);
     buffer = NULL;
     buffer = (uint8_t*) malloc(fileHeader -> bsSize);
-    writeBuffer(fileNamePicture, fileHeader -> bsSize);
+    result = writeBuffer(fileNamePicture, fileHeader -> bsSize);
+    if (result == 1) {
+        return 1;
+    }
     if (infoHeader -> biBitCount == 8) {
         bitMap8Bit -> fileHeader = *fileHeader;
         bitMap8Bit -> infoHeader = *infoHeader;
@@ -43,7 +47,7 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
 
 }
 
-static uint8_t writeBuffer(uint8_t *fileNamePicture, int16_t size) {
+static uint8_t writeBuffer(uint8_t *fileNamePicture, uint32_t size) {
     uint32_t i = 0;
     uint8_t counter = 0;
     uint8_t isRight = 0;

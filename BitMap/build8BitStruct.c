@@ -19,7 +19,7 @@ uint8_t buildPalette(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
     } else {
         colorUsed = picture8Bit -> infoHeader.biClrUsed;
     }
-    picture8Bit -> rgbPalette = (struct tagRGBQuad *) malloc(4 * colorUsed * sizeof(struct tagRGBQuad));
+    picture8Bit -> rgbPalette = (struct tagRGBQuad *) malloc( colorUsed * sizeof(struct tagRGBQuad));
 
     for (int i = 0; i < colorUsed; ++i) {
         picture8Bit -> rgbPalette[i].rgbBlue        =   buffer[i * 4 + 0 + 54];
@@ -50,55 +50,59 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
         width = picture8Bit -> infoHeader.biWidth + 4 - picture8Bit -> infoHeader.biWidth % 4;
     }
     height = picture8Bit -> infoHeader.biHeight;
-    printf("buildPalette\n");
-    printf(" width: %d", width);
-    printf(" height: %d", height);
+    printf(" width: %d \t", width);
+    printf(" height: %d \n", height);
 
-    printf("buildPalesfdtte\n");
     picture8Bit -> pixel = (uint8_t **)malloc(width * height);
     for (int i = 0; i < height; ++i) {
         picture8Bit -> pixel[i] = (uint8_t*) malloc(width);
+        if (NULL == picture8Bit->pixel[i]) {
+            perror("");
+            return 1;
+        }
     }
-    printf("buildPalette\n");
 
     if (picture8Bit -> infoHeader.biCompression == 0) {
         for (int32_t y = height - 1; y >= 0; y--) {
             for (int32_t x = 0; x < width; x++) {
                 picture8Bit -> pixel[y][x] = buffer[54 + colorUsed * 4 + y * width + x];
+                //printf("ColorWert: %d \t", buffer[54 + colorUsed * 4 + y * width + x]);
             }
         }
-        printf("buildPalette\n");
+        printf("buildPictureArrayUnCompressed\n");
 
     } else {
         int32_t x = 0;
         int32_t y = height - 1;
         int8_t isNotFinished = 1;
-        int32_t bufferPointer = 0;
-        while (isNotFinished && bufferPointer > 0) {
-            if (buffer[54 + colorUsed * 4 + bufferPointer] == 0) {
-                switch (buffer[54 + colorUsed * 4 + bufferPointer + 1]) {
+        int32_t bufferPointer = 54 + colorUsed * 4;
+        printf("1:%d \t 2:%d \t %d \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
+        while (isNotFinished && bufferPointer < width * height) {
+            if (buffer[bufferPointer] == 0) {
+                printf("1:%d \t 2:%d \t %d \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
+                switch (buffer[bufferPointer + 1]) {
                     case 0: endOfLine(&x, &y);
                         bufferPointer += 2;
                         break;
                     case 1: endOfBitmap(&isNotFinished);
                         break;
-                    case 2: deltaMove(&x, &y, buffer[54 + colorUsed * 4 + bufferPointer + 2], buffer[54 + colorUsed * 4 + bufferPointer + 3]);
+                    case 2: deltaMove(&x, &y, buffer[bufferPointer + 2], buffer[54 + colorUsed * 4 + bufferPointer + 3]);
                         bufferPointer += 4;
                         break;
-                    case 3: absoluteMode(&x, &y, buffer, colorUsed * 4, picture8Bit, width, &bufferPointer);
+                    case 3: absoluteMode(&x, &y, buffer, picture8Bit, width, &bufferPointer);
                         break;
-                    default: perror("Failure at expand");
+                    default: bufferPointer +=2;//perror("Failure at expand");
                 }
             } else {
-                writeInPixelBuffer(&x, &y, buffer[54 + colorUsed * 4 + bufferPointer], buffer[54 + colorUsed * 4 + bufferPointer + 1], picture8Bit, width);
+                writeInPixelBuffer(&x, &y, buffer[bufferPointer], buffer[bufferPointer + 1], picture8Bit, width);
                 bufferPointer += 2;
             }
         }
         if (bufferPointer < 0) {
             return 1;
         }
+        printf("buildPictureArrayCompressed\n");
     }
-    printf("buildPictureArray\n");
     return 0;
 
 }

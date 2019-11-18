@@ -10,6 +10,7 @@ static struct tagBitMap8Bit *picture8Bit = NULL;
 static struct tagBitMap24Bit *picture24Bit = NULL;
 
 int main(int argc, char **argv) {
+    int8_t result = 0;
     picture8Bit = (struct tagBitMap8Bit*) malloc(sizeof(struct tagBitMap8Bit));
     picture24Bit = (struct tagBitMap24Bit*) malloc(sizeof(struct tagBitMap24Bit));
 
@@ -17,9 +18,12 @@ int main(int argc, char **argv) {
     /* Initialisiere Pointer */
   printf("%s", argv[1]);
   /* build struct */
-  buildingStruct(argv[1], picture8Bit, picture24Bit);
+  result = buildingStruct(argv[1], picture8Bit, picture24Bit);
 
-  printf("%d\n", picture8Bit);
+  if (result == 1) {
+      return 1;
+  }
+  printf("%x\n", picture8Bit);
 
 
   /* print struct */
@@ -27,7 +31,7 @@ int main(int argc, char **argv) {
       printBitMapFileHeader( &(picture8Bit->fileHeader));
       printBitMapInfoHeader( &(picture8Bit->infoHeader));
       printBitMapColorPalette(picture8Bit);
-      printBitMap8BitPicture(picture8Bit);
+      //printBitMap8BitPicture(picture8Bit);
       getRect(picture8Bit);
   } else if (picture24Bit != NULL) {
       printBitMapFileHeader( &(picture24Bit->fileHeader));

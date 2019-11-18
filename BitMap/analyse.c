@@ -18,7 +18,7 @@ int32_t getRect(struct tagBitMap8Bit *picture8Bit) {
     int32_t amount = 0;
     width = 0;
     height = 0;
-    int8_t color = picture8Bit->pixel[0][0];
+    uint8_t color = picture8Bit->pixel[0][0];
 
     width = picture8Bit -> infoHeader.biWidth;
     height = picture8Bit->infoHeader.biHeight;
@@ -27,7 +27,8 @@ int32_t getRect(struct tagBitMap8Bit *picture8Bit) {
         for (int32_t j = 0; j < width - 1; j++) {
             printf("\n");
             if (!isInRect(listHead, &j, i)) {
-                printf("Color: %d \t x: %d \t y: %d \t Color(x,y): %d \n", color, j, i, picture8Bit->pixel[j][i]);
+                printf("Color: %d \t x: %d \t y: %d \t Color(x,y): %d \n", color, j, i, picture8Bit->pixel[i][j]);
+                color = picture8Bit->pixel[i][j];
                 if (picture8Bit->pixel[i][j + 1] == color &&
                     picture8Bit->pixel[i + 1][j] == color &&
                     picture8Bit->pixel[i + 1][j + 1] == color) {
@@ -39,6 +40,7 @@ int32_t getRect(struct tagBitMap8Bit *picture8Bit) {
                     printf(" amount: %d \n", amount);
                     amount++;
                 } else {
+                    printf("Else-Block");
                     color = picture8Bit->pixel[i][j + 1];
                 }
             }
@@ -54,10 +56,11 @@ int8_t isInRect(struct tagRectListElement *listHead, int32_t *x, int32_t y) {
     struct tagRectListElement *listPointer = listHead;
     while (listPointer->next != NULL) {
         listPointer = listPointer->next;
-        printf("%d\n", listPointer->rect->position->topLeft[0]);
+        printf("%d xPosition leftTop\n", listPointer->rect->position->topLeft[0]);
         if (*x >= listPointer->rect->position->topLeft[0] && *x <= listPointer->rect->position->topRight[0] &&
             y >= listPointer->rect->position->topRight[1] && y <= listPointer->rect->position->btmRight[1]) {
             *x = listPointer->rect->position->topRight[0];
+            printf("newX: %d", *x);
             return 1;
         }
     }
@@ -82,11 +85,12 @@ struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_
     listElement->rect->volume = 0;
     int32_t rectWidth = width;
     int32_t rectHeight = height;
-    int8_t color = picture8Bit->pixel[x][y];
+    uint8_t color = picture8Bit->pixel[y][x];
+    printf(" MakeNewRect1: Width: %d \t Height: %d \n", rectWidth, rectHeight);
 
     for (int32_t i = y; i < rectHeight; i++) {
         for (int32_t j = x; j < rectWidth; j++) {
-            printf("Color: %d \t x: %d \t y: %d \t Color(x,y): %d \n", color, j, i, picture8Bit->pixel[j][i]);
+            printf(" MakeNewRect: Color: %d \t x: %d \t y: %d \t Color(x,y): %d \n", color, j, i, picture8Bit->pixel[i][j]);
 
             if (color != picture8Bit->pixel[i][j] && i == y) {
                 // i==y erste Zeile checken um die Breite herauszufinden
@@ -97,7 +101,7 @@ struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_
             }
         }
     }
-    printf("Width: %d \t Height: %d \n", rectWidth, rectHeight);
+    printf(" MakeNewRect: Width: %d \t Height: %d \n", rectWidth, rectHeight);
     printf("%d,%d \t%d,%d \n%d,%d \t%d,%d\n", x,y, rectWidth,y,x,rectHeight,rectWidth,rectHeight);
     listElement->rect->position->topLeft[0] = x;
     listElement->rect->position->topLeft[1] = y;

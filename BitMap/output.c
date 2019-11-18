@@ -34,7 +34,15 @@ void printBitMapInfoHeader(struct tagBitMapInfoHeader * infoHeader) {
 
 void printBitMapColorPalette(struct tagBitMap8Bit *picture8Bit) {
     printf("-----------------BildPalette-----------------\n");
-    for (int i = 0; i < picture8Bit -> infoHeader.biClrUsed; ++i) {
+
+    int32_t colorUsed = 0;
+
+    if (picture8Bit -> infoHeader . biClrUsed == 0) {
+        colorUsed = 256;
+    } else {
+        colorUsed = picture8Bit -> infoHeader.biClrUsed;
+    }
+    for (int i = 0; i < colorUsed; ++i) {
         printf(" %d\t", i);
         printf(" %x\t", picture8Bit -> rgbPalette[i].rgbBlue);
         printf(" %x\t", picture8Bit -> rgbPalette[i].rgbGreen);
@@ -45,15 +53,12 @@ void printBitMapColorPalette(struct tagBitMap8Bit *picture8Bit) {
 }
 
 void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit) {
-    printf("HALLO1\n");
     int32_t width = 0;
-    printf("HALLO2\n");
     if (picture8Bit->infoHeader.biWidth % 4 == 0){
         width = picture8Bit -> infoHeader.biWidth;
     } else {
         width = picture8Bit -> infoHeader.biWidth + 4 - picture8Bit -> infoHeader.biWidth % 4;
     }
-    printf("HALLO3\n");
     for (int32_t i = picture8Bit->infoHeader.biHeight - 1; i >= 0; i--) {
         for (int32_t j = 0; j < width; j++) {
             printf("%x \t", picture8Bit -> pixel[i][j]);
@@ -63,7 +68,6 @@ void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit) {
 }
 
 void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit) {
-    printf("HALLO24Bit\n");
     int32_t width = 0;
     if (picture24Bit->infoHeader.biWidth % 4 == 0){
         width = picture24Bit -> infoHeader.biWidth;
