@@ -1,3 +1,0 @@
-C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/BitMap.dir
-C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/TI_Labor/github/gs_wi_19/BitMap/cmake-build-debug/CMakeFiles/rebuild_cache.dir
