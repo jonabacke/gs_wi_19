@@ -64,4 +64,17 @@ void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit) {
 
 void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit) {
     printf("HALLO24Bit\n");
+    int32_t width = 0;
+    if (picture24Bit->infoHeader.biWidth % 4 == 0){
+        width = picture24Bit -> infoHeader.biWidth;
+    } else {
+        width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
+    }
+
+    for (int32_t i = picture24Bit->infoHeader.biHeight - 1; i >= 0; i--) {
+        for (int32_t j = 0; j < width; j++) {
+            printf("%x \t", picture24Bit -> pixel[i][j]);
+        }
+        printf("\n");
+    }
 }

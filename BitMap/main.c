@@ -20,6 +20,8 @@ int main(int argc, char **argv) {
   buildingStruct(argv[1], picture8Bit, picture24Bit);
 
   printf("%d\n", picture8Bit);
+
+
   /* print struct */
   if (picture8Bit != NULL) {
       printBitMapFileHeader( &(picture8Bit->fileHeader));

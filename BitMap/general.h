@@ -41,7 +41,7 @@ typedef struct tagRGBTriple {
   uint8_t rgbBlue;
   uint8_t rgbGreen;
   uint8_t rgbRed;
-} RGBTriple;
+} __attribute__((__packed__)) RGBTriple;
 
 
 typedef struct tagBitMap8Bit {
