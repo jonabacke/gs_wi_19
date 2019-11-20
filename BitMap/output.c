@@ -25,7 +25,7 @@ void printBitMapInfoHeader(struct tagBitMapInfoHeader * infoHeader) {
     printf(" %d \t bits per Pixel \n", infoHeader -> biBitCount);
     printf(" %d \t 0: uncompressed; 1: compressed \n", infoHeader -> biCompression);
     printf(" %d \t Size of image (width * height wobei width durch 4 teilbar sein muss ) \n", infoHeader -> biSizeImage);
-    printf(" %d \t pixelPerMeterX \n", infoHeader -> biXPelsPerPeter);
+    printf(" %d \t pixelPerMeterX \n", infoHeader -> biXPelsPerMeter);
     printf(" %d \t pixelPerMeterY \n", infoHeader -> biYPelsPerMeter);
     printf(" %d \t number of colors \n", infoHeader -> biClrUsed);
     printf(" %d \t required number of colors \n", infoHeader -> biClrImportant);
@@ -81,4 +81,112 @@ void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit) {
         }
         printf("\n");
     }
+}
+
+void printNewBitMapPicture(struct tagBitMap8Bit *picture24Bit) {
+    uint8_t *buffer = NULL;
+    int32_t bufferSize = (picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight * 3 + 54);
+    buffer = (uint8_t*) malloc(bufferSize);
+    buffer[0] = picture24Bit->fileHeader.bfType;
+    buffer[1] = picture24Bit->fileHeader.bfType >> 8;
+    buffer[2] = bufferSize;
+    buffer[3] = bufferSize >> 8;
+    buffer[4] = bufferSize >> 16;
+    buffer[5] = bufferSize >> 24;
+    buffer[6] = picture24Bit->fileHeader.bfReserved1;
+    buffer[7] = picture24Bit->fileHeader.bfReserved1 >> 8;
+    buffer[8] = picture24Bit->fileHeader.bfReserved2;
+    buffer[9] = picture24Bit->fileHeader.bfReserved2 >> 8;
+    buffer[10] = 54;
+    buffer[11] = 0;
+    buffer[12] = 0;
+    buffer[13] = 0;
+    buffer[14] = picture24Bit->infoHeader.biSize;
+    buffer[15] = picture24Bit->infoHeader.biSize >> 8;
+    buffer[16] = picture24Bit->infoHeader.biSize >> 16;
+    buffer[17] = picture24Bit->infoHeader.biSize >> 24;
+    buffer[18] = picture24Bit->infoHeader.biWidth;
+    buffer[19] = picture24Bit->infoHeader.biWidth >> 8;
+    buffer[20] = picture24Bit->infoHeader.biWidth >> 16;
+    buffer[21] = picture24Bit->infoHeader.biWidth >> 24;
+    buffer[22] = picture24Bit->infoHeader.biHeight;
+    buffer[23] = picture24Bit->infoHeader.biHeight >> 8;
+    buffer[24] = picture24Bit->infoHeader.biHeight >> 16;
+    buffer[25] = picture24Bit->infoHeader.biHeight >> 24;
+    buffer[26] = picture24Bit->infoHeader.biPlanes;
+    buffer[27] = picture24Bit->infoHeader.biPlanes >> 8;
+    buffer[28] = 24;
+    buffer[29] = 0;
+    buffer[30] = 0;
+    buffer[31] = 0;
+    buffer[32] = 0;
+    buffer[33] = 0;
+    buffer[34] = picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight;
+    buffer[35] = picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight >> 8;
+    buffer[36] = picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight >> 16;
+    buffer[37] = picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight >> 24;
+    buffer[38] = picture24Bit->infoHeader.biXPelsPerMeter;
+    buffer[39] = picture24Bit->infoHeader.biXPelsPerMeter >> 8;
+    buffer[40] = picture24Bit->infoHeader.biXPelsPerMeter >> 16;
+    buffer[41] = picture24Bit->infoHeader.biXPelsPerMeter >> 24;
+    buffer[42] = picture24Bit->infoHeader.biYPelsPerMeter;
+    buffer[43] = picture24Bit->infoHeader.biYPelsPerMeter >> 8;
+    buffer[44] = picture24Bit->infoHeader.biYPelsPerMeter >> 16;
+    buffer[45] = picture24Bit->infoHeader.biYPelsPerMeter >> 24;
+    buffer[46] = picture24Bit->infoHeader.biClrUsed;
+    buffer[47] = picture24Bit->infoHeader.biClrUsed >> 8;
+    buffer[48] = picture24Bit->infoHeader.biClrUsed >> 16;
+    buffer[49] = picture24Bit->infoHeader.biClrUsed >> 24;
+    buffer[50] = picture24Bit->infoHeader.biClrImportant;
+    buffer[51] = picture24Bit->infoHeader.biClrImportant >> 8;
+    buffer[52] = picture24Bit->infoHeader.biClrImportant >> 16;
+    buffer[53] = picture24Bit->infoHeader.biClrImportant >> 24;
+    int32_t i = 54;
+        for (int j = picture24Bit->infoHeader.biHeight - 1; j >= 0; j--) {
+            for (int k = 0; k < picture24Bit->infoHeader.biWidth; k++) {
+                buffer[i] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbBlue;
+                buffer[i + 1] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbGreen;
+                buffer[i + 2] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbRed;
+                i = i + 3;
+                printf("i: %d \t j: %d \t k: %d \n", i, j, k);
+            }
+
+        }
+
+
+    for (int i = 0; i < bufferSize; ++i) {
+        printf("buffer: %x \n", buffer[i]);
+    }
+    FILE * filePointer;
+    int32_t  result;
+    filePointer = fopen("PictureCopy.bmp", "wb");
+    result = fwrite(buffer, 1, bufferSize, filePointer);
+    printf("Result %d \t BufferSize: %d \n", result, bufferSize);
+    fclose(filePointer);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

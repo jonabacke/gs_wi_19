@@ -65,6 +65,7 @@ static uint8_t writeBuffer(uint8_t *fileNamePicture, uint32_t size) {
             isRight = 1;
         }
     }
+    fclose(filePointer);
     printf("writeBuffer\n");
 
     if (!isRight && counter == 10) {
@@ -94,7 +95,7 @@ static uint8_t buildInfoHeader() {
     infoHeader -> biBitCount = buffer[28] + buffer[29]*256;
     infoHeader -> biCompression = buffer[30] + buffer[31]*256 + buffer[32] * 65536 + buffer[33] * 16777216;
     infoHeader -> biSizeImage = buffer[34] + buffer[35]*256 + buffer[36] * 65536 + buffer[37] * 16777216;
-    infoHeader -> biXPelsPerPeter = buffer[38] + buffer[39]*256 + buffer[40] * 65536 + buffer[41] * 16777216;
+    infoHeader -> biXPelsPerMeter = buffer[38] + buffer[39]*256 + buffer[40] * 65536 + buffer[41] * 16777216;
     infoHeader -> biYPelsPerMeter = buffer[42] + buffer[43]*256 + buffer[44] * 65536 + buffer[45] * 16777216;
     infoHeader -> biClrUsed = buffer[46] + buffer[47]*256 + buffer[48] * 65536 + buffer[49] * 16777216;
     infoHeader -> biClrImportant = buffer[50] + buffer[51]*256 + buffer[52] * 65536 + buffer[53] * 16777216;

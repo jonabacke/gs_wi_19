@@ -78,22 +78,31 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
         int32_t bufferPointer = 54 + colorUsed * 4;
         printf("1:%d \t 2:%d \t %d \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
         while (isNotFinished && bufferPointer < width * height) {
+            printf("bufferPointer1: %d\n", bufferPointer);
             if (buffer[bufferPointer] == 0) {
                 printf("1:%d \t 2:%d \t %d \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
                 switch (buffer[bufferPointer + 1]) {
                     case 0: endOfLine(&x, &y);
+                        printf("bufferPointer: %d \n", bufferPointer);
                         bufferPointer += 2;
                         break;
                     case 1: endOfBitmap(&isNotFinished);
+                        printf("bufferPointer: %d \n", bufferPointer);
+                        bufferPointer += 2;
                         break;
                     case 2: deltaMove(&x, &y, buffer[bufferPointer + 2], buffer[54 + colorUsed * 4 + bufferPointer + 3]);
+                        printf("bufferPointer: %d \n", bufferPointer);
                         bufferPointer += 4;
                         break;
                     case 3: absoluteMode(&x, &y, buffer, picture8Bit, width, &bufferPointer);
+                        printf("bufferPointer: %d \n", bufferPointer);
                         break;
-                    default: bufferPointer +=2;//perror("Failure at expand");
+                    default: bufferPointer +=1;//perror("Failure at expand");
+                        break;
                 }
             } else {
+                printf("bufferPointer: %d \n", bufferPointer);
+
                 writeInPixelBuffer(&x, &y, buffer[bufferPointer], buffer[bufferPointer + 1], picture8Bit, width);
                 bufferPointer += 2;
             }

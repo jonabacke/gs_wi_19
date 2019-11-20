@@ -21,7 +21,7 @@ typedef struct tagBitMapInfoHeader {
   uint16_t  biBitCount;     // Specifies the number of bits-per-pixel. 8: 256 colors 24: 2^24 colors
   uint32_t  biCompression;  // Specifies the type of compression for a compressed bottomup bitmap BI_RGB: uncompressed BI_RLE8: compressed
   uint32_t  biSizeImage;    // Specifies the size, in bytes, of the image. This may be set to zero for BI_RGB bitmaps.
-  int32_t   biXPelsPerPeter;// Specifies the horizontal resolution, in pixels-per-meter, of the target device for the bitmap.
+  int32_t   biXPelsPerMeter;// Specifies the horizontal resolution, in pixels-per-meter, of the target device for the bitmap.
   int32_t   biYPelsPerMeter;// Specifies the vertical resolution, in pixels-per-meter, of the target device for the bitmap.
   uint32_t  biClrUsed;      // Specifies the number of color indexes in the color table that are actually used by the bitmap. 0 for max colors
   uint32_t  biClrImportant; // Specifies the number of color indexes that are required for displaying the bitmap. If this value is zero, all colors are required.

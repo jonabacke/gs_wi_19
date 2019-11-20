@@ -40,21 +40,18 @@ void absoluteMode(int32_t * x, int32_t * y, uint8_t* buffer, struct tagBitMap8Bi
 
 void writeInPixelBuffer(int32_t * x, int32_t * y, uint8_t amount, uint8_t value, struct tagBitMap8Bit* picture, int32_t width) {
     while (amount > 0) {
-        printf("value: %d \t x:%d \t y:%d \t color%d \tamount: %d \n",value, *x, *y, picture->pixel[*y][*x], amount);
+       // printf("value: %d \t x:%d \t y:%d \t color%d \tamount: %d \n",value, *x, *y, picture->pixel[*y][*x], amount);
         picture -> pixel[*y][*x] = value;
-        printf("Hallo %d \n", width);
+       // printf("Hallo %d \n", width);
             *x = *x + 1;
-            printf("Hallo \n");
-    /*
+        //    printf("Hallo \n");
+
             if (*x >= width) {
-                if (*y == 0) {
-                    return ;
-                }
                 *x = 0;
                 *y = *y - 1;
             }
-*/
-            printf("Value:%d \t x:%d \t y:%d \t color:%d \n", value, *x, *y, picture->pixel[*y][*x - 1]);
+
+        //    printf("Value:%d \t x:%d \t y:%d \t color:%d \n", value, *x, *y, picture->pixel[*y][*x - 1]);
 
 
 

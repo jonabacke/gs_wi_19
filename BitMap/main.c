@@ -30,9 +30,10 @@ int main(int argc, char **argv) {
   if (picture8Bit != NULL) {
       printBitMapFileHeader( &(picture8Bit->fileHeader));
       printBitMapInfoHeader( &(picture8Bit->infoHeader));
-      printBitMapColorPalette(picture8Bit);
+      //printBitMapColorPalette(picture8Bit);
       //printBitMap8BitPicture(picture8Bit);
-      getRect(picture8Bit);
+      //getRect(picture8Bit);
+      printNewBitMapPicture(picture8Bit);
   } else if (picture24Bit != NULL) {
       printBitMapFileHeader( &(picture24Bit->fileHeader));
       printBitMapInfoHeader( &(picture24Bit->infoHeader));
