@@ -10,7 +10,7 @@ typedef struct tagBitMapFileHeader {
   uint16_t bfReserved1;     // Reserved; must be zero.
   uint16_t bfReserved2;     // Reserved; must be zero.
   uint32_t bfOfBits;        // Specifies the offset, in bytes, from the beginning of the BITMAPFILEHEADER structure to the bitmap bits.
-} bitMapFileHeader, *pBitMapFileHeader;
+} __attribute__((__packed__)) bitMapFileHeader, *pBitMapFileHeader;
 
 
 typedef struct tagBitMapInfoHeader {
@@ -25,7 +25,7 @@ typedef struct tagBitMapInfoHeader {
   int32_t   biYPelsPerMeter;// Specifies the vertical resolution, in pixels-per-meter, of the target device for the bitmap.
   uint32_t  biClrUsed;      // Specifies the number of color indexes in the color table that are actually used by the bitmap. 0 for max colors
   uint32_t  biClrImportant; // Specifies the number of color indexes that are required for displaying the bitmap. If this value is zero, all colors are required.
-} bitMapInfoHeader, *pBitMapInfoHeader;
+} __attribute__((__packed__)) bitMapInfoHeader, *pBitMapInfoHeader;
 
 
 typedef struct tagRGBQuad {

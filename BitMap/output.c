@@ -5,6 +5,7 @@
 #include "general.h"
 #include "output.h"
 #include <stdio.h>
+#include <string.h>
 
 void printBitMapFileHeader(struct tagBitMapFileHeader * fileHeader) {
     printf("--------------BitMapHeaderFile---------------\n");
@@ -54,12 +55,13 @@ void printBitMapColorPalette(struct tagBitMap8Bit *picture8Bit) {
 
 void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit) {
     int32_t width = 0;
+    int32_t height = picture8Bit -> infoHeader.biHeight;
     if (picture8Bit->infoHeader.biWidth % 4 == 0){
         width = picture8Bit -> infoHeader.biWidth;
     } else {
         width = picture8Bit -> infoHeader.biWidth + 4 - picture8Bit -> infoHeader.biWidth % 4;
     }
-    for (int32_t i = picture8Bit->infoHeader.biHeight - 1; i >= 0; i--) {
+    for (int32_t i =  0; i < height; i++) {
         for (int32_t j = 0; j < width; j++) {
             printf("%x \t", picture8Bit -> pixel[i][j]);
         }
@@ -83,9 +85,16 @@ void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit) {
     }
 }
 
-void printNewBitMapPicture(struct tagBitMap8Bit *picture24Bit) {
+void printNewBitMapPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *fileNamePicture) {
+    int32_t height = picture24Bit -> infoHeader.biHeight;
+    int32_t width = 0;
+    if (picture24Bit->infoHeader.biWidth % 4 == 0){
+        width = picture24Bit -> infoHeader.biWidth;
+    } else {
+        width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
+    }
     uint8_t *buffer = NULL;
-    int32_t bufferSize = (picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight * 3 + 54);
+    int32_t bufferSize = (width * picture24Bit->infoHeader.biHeight * 3 + 54);
     buffer = (uint8_t*) malloc(bufferSize);
     buffer[0] = picture24Bit->fileHeader.bfType;
     buffer[1] = picture24Bit->fileHeader.bfType >> 8;
@@ -105,10 +114,10 @@ void printNewBitMapPicture(struct tagBitMap8Bit *picture24Bit) {
     buffer[15] = picture24Bit->infoHeader.biSize >> 8;
     buffer[16] = picture24Bit->infoHeader.biSize >> 16;
     buffer[17] = picture24Bit->infoHeader.biSize >> 24;
-    buffer[18] = picture24Bit->infoHeader.biWidth;
-    buffer[19] = picture24Bit->infoHeader.biWidth >> 8;
-    buffer[20] = picture24Bit->infoHeader.biWidth >> 16;
-    buffer[21] = picture24Bit->infoHeader.biWidth >> 24;
+    buffer[18] = width;
+    buffer[19] = width >> 8;
+    buffer[20] = width >> 16;
+    buffer[21] = width >> 24;
     buffer[22] = picture24Bit->infoHeader.biHeight;
     buffer[23] = picture24Bit->infoHeader.biHeight >> 8;
     buffer[24] = picture24Bit->infoHeader.biHeight >> 16;
@@ -121,10 +130,10 @@ void printNewBitMapPicture(struct tagBitMap8Bit *picture24Bit) {
     buffer[31] = 0;
     buffer[32] = 0;
     buffer[33] = 0;
-    buffer[34] = picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight;
-    buffer[35] = picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight >> 8;
-    buffer[36] = picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight >> 16;
-    buffer[37] = picture24Bit->infoHeader.biWidth * picture24Bit->infoHeader.biHeight >> 24;
+    buffer[34] = width * height;
+    buffer[35] = width * height >> 8;
+    buffer[36] = width * height >> 16;
+    buffer[37] = width * height >> 24;
     buffer[38] = picture24Bit->infoHeader.biXPelsPerMeter;
     buffer[39] = picture24Bit->infoHeader.biXPelsPerMeter >> 8;
     buffer[40] = picture24Bit->infoHeader.biXPelsPerMeter >> 16;
@@ -133,33 +142,50 @@ void printNewBitMapPicture(struct tagBitMap8Bit *picture24Bit) {
     buffer[43] = picture24Bit->infoHeader.biYPelsPerMeter >> 8;
     buffer[44] = picture24Bit->infoHeader.biYPelsPerMeter >> 16;
     buffer[45] = picture24Bit->infoHeader.biYPelsPerMeter >> 24;
-    buffer[46] = picture24Bit->infoHeader.biClrUsed;
-    buffer[47] = picture24Bit->infoHeader.biClrUsed >> 8;
-    buffer[48] = picture24Bit->infoHeader.biClrUsed >> 16;
-    buffer[49] = picture24Bit->infoHeader.biClrUsed >> 24;
-    buffer[50] = picture24Bit->infoHeader.biClrImportant;
-    buffer[51] = picture24Bit->infoHeader.biClrImportant >> 8;
-    buffer[52] = picture24Bit->infoHeader.biClrImportant >> 16;
-    buffer[53] = picture24Bit->infoHeader.biClrImportant >> 24;
+    buffer[46] = 0;
+    buffer[47] = 0;
+    buffer[48] = 0;
+    buffer[49] = 0;
+    buffer[50] = 0;
+    buffer[51] = 0;
+    buffer[52] = 0;
+    buffer[53] = 0;
     int32_t i = 54;
-        for (int j = picture24Bit->infoHeader.biHeight - 1; j >= 0; j--) {
-            for (int k = 0; k < picture24Bit->infoHeader.biWidth; k++) {
-                buffer[i] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbBlue;
-                buffer[i + 1] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbGreen;
-                buffer[i + 2] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbRed;
+        for (int j = 0; j < height; j++) {
+            for (int k = 0; k < width; k++) {
+                if (k >= picture24Bit->infoHeader.biWidth - 1) {
+                    buffer[i] = picture24Bit->rgbPalette[picture24Bit->pixel[j][picture24Bit->infoHeader.biWidth - 1]].rgbBlue;
+                    buffer[i + 1] = picture24Bit->rgbPalette[picture24Bit->pixel[j][picture24Bit->infoHeader.biWidth - 1]].rgbGreen;
+                    buffer[i + 2] = picture24Bit->rgbPalette[picture24Bit->pixel[j][picture24Bit->infoHeader.biWidth - 1]].rgbRed;
+
+                } else {
+                    buffer[i] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbBlue;
+                    buffer[i + 1] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbGreen;
+                    buffer[i + 2] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbRed;
+                }
                 i = i + 3;
-                printf("i: %d \t j: %d \t k: %d \n", i, j, k);
+                //printf("i: %d \t j: %d \t k: %d \n", i, j, k);
             }
 
         }
 
 
     for (int i = 0; i < bufferSize; ++i) {
-        printf("buffer: %x \n", buffer[i]);
+        //printf("buffer: %x \n", buffer[i]);
     }
     FILE * filePointer;
     int32_t  result;
-    filePointer = fopen("PictureCopy.bmp", "wb");
+    uint8_t delimiter[1] = "/";
+    uint8_t *ptr;
+    uint8_t *speicherPfad = fileNamePicture;
+    ptr = strtok(fileNamePicture, delimiter);
+    while (NULL != ptr)
+    {
+        speicherPfad = ptr;
+        ptr = strtok(NULL, delimiter);
+    }
+    printf("SpeicherPfad: %s \n", speicherPfad);
+    filePointer = fopen(speicherPfad, "wb");
     result = fwrite(buffer, 1, bufferSize, filePointer);
     printf("Result %d \t BufferSize: %d \n", result, bufferSize);
     fclose(filePointer);

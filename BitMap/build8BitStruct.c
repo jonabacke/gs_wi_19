@@ -10,9 +10,10 @@
 #include "expand.h"
 #include "output.h"
 
-uint8_t buildPalette(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
+uint8_t buildPalette(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) {
 
     int32_t colorUsed = 0;
+    int32_t result = 0;
 
     if (picture8Bit -> infoHeader . biClrUsed == 0) {
         colorUsed = 256;
@@ -21,28 +22,23 @@ uint8_t buildPalette(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
     }
     picture8Bit -> rgbPalette = (struct tagRGBQuad *) malloc( colorUsed * sizeof(struct tagRGBQuad));
 
-    for (int i = 0; i < colorUsed; ++i) {
-        picture8Bit -> rgbPalette[i].rgbBlue        =   buffer[i * 4 + 0 + 54];
-        picture8Bit -> rgbPalette[i].rgbGreen       =   buffer[i * 4 + 1 + 54];
-        picture8Bit -> rgbPalette[i].rgbRed         =   buffer[i * 4 + 2 + 54];
-        picture8Bit -> rgbPalette[i].rgbReserved    =   buffer[i * 4 + 3 + 54];
-    }
-    printf("buildPalette\n");
+    result = fread(picture8Bit->rgbPalette, 1, colorUsed * 4, filePointer);
 
-    return 0;
+    if (result == colorUsed * 4)
+    {
+        printf("buildPalette ColorUsed: %d\n", colorUsed);
+        return 0;
+    } else
+    {
+        printf("buildPaletteFailed\n");
+        return 1;
+    }
 }
 
-uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
+uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) {
     int32_t width = 0;
     int32_t height = 0;
-
-    int32_t colorUsed = 0;
-
-    if (picture8Bit -> infoHeader . biClrUsed == 0) {
-        colorUsed = 256;
-    } else {
-        colorUsed = picture8Bit -> infoHeader.biClrUsed;
-    }
+    int32_t offset = picture8Bit->fileHeader.bfOfBits;
 
     if (picture8Bit->infoHeader.biWidth % 4 == 0){
         width = picture8Bit -> infoHeader.biWidth;
@@ -54,6 +50,11 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
     printf(" height: %d \n", height);
 
     picture8Bit -> pixel = (uint8_t **)malloc(width * height);
+    if (NULL == picture8Bit->pixel)
+    {
+        perror("");
+        return 1;
+    }    
     for (int i = 0; i < height; ++i) {
         picture8Bit -> pixel[i] = (uint8_t*) malloc(width);
         if (NULL == picture8Bit->pixel[i]) {
@@ -63,55 +64,119 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, uint8_t *buffer) {
     }
 
     if (picture8Bit -> infoHeader.biCompression == 0) {
-        for (int32_t y = height - 1; y >= 0; y--) {
-            for (int32_t x = 0; x < width; x++) {
-                picture8Bit -> pixel[y][x] = buffer[54 + colorUsed * 4 + y * width + x];
-                //printf("ColorWert: %d \t", buffer[54 + colorUsed * 4 + y * width + x]);
+        int32_t result = 0;
+        for (int32_t i = 0; i < height; i++)
+        {
+            result = fread(picture8Bit->pixel[i], 1, width, filePointer);
+
+            if (result != width)
+            {
+                printf("buildPictureArrayUncompressedFailed\n");
+                return 1;
             }
         }
-        printf("buildPictureArrayUnCompressed\n");
+        printf("buildPictureArrayUncompressed\n");
+        return 0;
 
     } else {
+        uint8_t *buffer = (uint8_t *) malloc(picture8Bit->fileHeader.bsSize - offset);
+        int32_t result = 0;
         int32_t x = 0;
-        int32_t y = height - 1;
+        int32_t y = 0;
         int8_t isNotFinished = 1;
-        int32_t bufferPointer = 54 + colorUsed * 4;
-        printf("1:%d \t 2:%d \t %d \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
+        int32_t bufferPointer = 0;
+        result = fread(buffer, 1, picture8Bit->fileHeader.bsSize - offset, filePointer);
+        if (result != picture8Bit->fileHeader.bsSize - offset)
+        {
+            return 1;
+        }
+        
         while (isNotFinished && bufferPointer < width * height) {
-            printf("bufferPointer1: %d\n", bufferPointer);
+            printf("1:%d \t 2:%d \t %d \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
+            //printf("bufferPointer1: %d\n", bufferPointer);
             if (buffer[bufferPointer] == 0) {
-                printf("1:%d \t 2:%d \t %d \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
                 switch (buffer[bufferPointer + 1]) {
-                    case 0: endOfLine(&x, &y);
-                        printf("bufferPointer: %d \n", bufferPointer);
+                    case 0: 
+                        result = endOfLine(&x, &y, picture8Bit);
+                        //printf("bufferPointer: %d \n", bufferPointer);
                         bufferPointer += 2;
+                        if (result != 0)
+                        {
+                            bufferPointer = -1;
+                        }
                         break;
-                    case 1: endOfBitmap(&isNotFinished);
-                        printf("bufferPointer: %d \n", bufferPointer);
+                    case 1: 
+                        result = endOfBitmap(&isNotFinished);
+                        //printf("bufferPointer: %d \n", bufferPointer);
                         bufferPointer += 2;
+                        if (result != 0)
+                        {
+                            bufferPointer = -1;
+                        }
                         break;
-                    case 2: deltaMove(&x, &y, buffer[bufferPointer + 2], buffer[54 + colorUsed * 4 + bufferPointer + 3]);
-                        printf("bufferPointer: %d \n", bufferPointer);
+                    case 2: 
+                        result = deltaMove(&x, &y, buffer[bufferPointer + 2], buffer[bufferPointer + 3]);
+                        //printf("bufferPointer: %d \n", bufferPointer);
                         bufferPointer += 4;
+                        if (result != 0)
+                        {
+                            bufferPointer = -1;
+                        }
                         break;
-                    case 3: absoluteMode(&x, &y, buffer, picture8Bit, width, &bufferPointer);
-                        printf("bufferPointer: %d \n", bufferPointer);
-                        break;
-                    default: bufferPointer +=1;//perror("Failure at expand");
+                    default: 
+                        result = absoluteMode(&x, &y, buffer, picture8Bit, width, &bufferPointer);
+                        //printf("bufferPointer: %d \n", bufferPointer);
+                        if (result != 0)
+                        {
+                            bufferPointer = -1;
+                        }
                         break;
                 }
+                if (x > width || y > height)
+                {
+                    printf("buildPictureArrayCompressedFailed\n");
+                    return 1;
+                }
+                
             } else {
-                printf("bufferPointer: %d \n", bufferPointer);
+                //printf("bufferPointer: %d \n", bufferPointer);
 
                 writeInPixelBuffer(&x, &y, buffer[bufferPointer], buffer[bufferPointer + 1], picture8Bit, width);
                 bufferPointer += 2;
             }
-        }
-        if (bufferPointer < 0) {
+            if (bufferPointer < 0) {
+            printf("buildPictureArrayCompressedFailed\n");
             return 1;
+            }
         }
         printf("buildPictureArrayCompressed\n");
     }
     return 0;
+
+}
+
+struct tagBitMap24Bit* concert8BitTo24Bit(struct tagBitMap8Bit bitMap8Bit) {
+  /*
+    struct tagBitMap24Bit *bitMap24Bit = NULL;
+    bitMap24Bit = (struct tagBitMap24Bit*) malloc(sizeof(struct tagBitMap24Bit));
+    bitMap24Bit -> fileHeader = (struct tagBitMapFileHeader*) malloc(sizeof(struct tagBitMapFileHeader));
+    bitMap24Bit -> fileHeader = bitMap8Bit -> fileHeader;
+    bitMap24Bit -> infoHeader = (struct tagBitMapInfoHeader*) malloc(sizeof(struct tagBitMapInfoHeader));
+    bitMap24Bit -> infoHeader = bitMap8Bit -> infoHeader;
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

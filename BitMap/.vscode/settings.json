@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "functional": "c",
+        "analyse.h": "c",
+        "stdio.h": "c",
+        "general.h": "c"
+    }
+}
