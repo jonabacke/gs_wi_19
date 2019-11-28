@@ -85,64 +85,81 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) 
         int32_t y = 0;
         int8_t isNotFinished = 1;
         int32_t bufferPointer = 0;
+        uint8_t wordBoundary = 0;
         result = fread(buffer, 1, picture8Bit->fileHeader.bsSize - offset, filePointer);
+        for (size_t i = 0; i < result; i++)
+        {
+            printf("%x, %x \t", buffer[i], i);
+        }
+        //return 0;
         if (result != picture8Bit->fileHeader.bsSize - offset)
         {
+            printf("result: %d \n", result);
+            perror("buffer hat falsch gelesen");
             return 1;
         }
-        
+        result = 0;
         while (isNotFinished && bufferPointer < width * height) {
-            printf("1:%d \t 2:%d \t %d \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
+            printf("1:%x \t 2:%x \t %x \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
             //printf("bufferPointer1: %d\n", bufferPointer);
             if (buffer[bufferPointer] == 0) {
                 switch (buffer[bufferPointer + 1]) {
                     case 0: 
-                        result = endOfLine(&x, &y, picture8Bit);
+                        result += endOfLine(&x, &y, picture8Bit);
                         //printf("bufferPointer: %d \n", bufferPointer);
                         bufferPointer += 2;
                         if (result != 0)
                         {
-                            bufferPointer = -1;
+                        //    bufferPointer = -1;
                         }
                         break;
                     case 1: 
-                        result = endOfBitmap(&isNotFinished);
+                        result += endOfBitmap(&isNotFinished);
                         //printf("bufferPointer: %d \n", bufferPointer);
                         bufferPointer += 2;
                         if (result != 0)
                         {
-                            bufferPointer = -1;
+                        //    bufferPointer = -1;
                         }
                         break;
                     case 2: 
-                        result = deltaMove(&x, &y, buffer[bufferPointer + 2], buffer[bufferPointer + 3]);
+                        result += deltaMove(&x, &y, buffer[bufferPointer + 2], buffer[bufferPointer + 3]);
                         //printf("bufferPointer: %d \n", bufferPointer);
                         bufferPointer += 4;
                         if (result != 0)
                         {
-                            bufferPointer = -1;
+                        //    bufferPointer = -1;
                         }
                         break;
                     default: 
-                        result = absoluteMode(&x, &y, buffer, picture8Bit, width, &bufferPointer);
+                        wordBoundary = (buffer[bufferPointer + 1] + 2) % 2; // 00 03 45 56 67 => 1; 00 04 45 56 67 45 => 0
+                        result += absoluteMode(&x, &y, buffer, picture8Bit, width, &bufferPointer);
                         //printf("bufferPointer: %d \n", bufferPointer);
+                         
+                        bufferPointer += wordBoundary;
                         if (result != 0)
                         {
-                            bufferPointer = -1;
+                        //    bufferPointer = -1;
                         }
                         break;
                 }
-                if (x > width || y > height)
+                if (x > width || y > height || result > 0)
                 {
-                    printf("buildPictureArrayCompressedFailed\n");
+                    printf("buildPictureArrayCompressedFailed x: %d y: %d result: %d\n", x, y, result);
                     return 1;
                 }
                 
             } else {
                 //printf("bufferPointer: %d \n", bufferPointer);
 
-                writeInPixelBuffer(&x, &y, buffer[bufferPointer], buffer[bufferPointer + 1], picture8Bit, width);
+                result += writeInPixelBuffer(&x, &y, buffer[bufferPointer], buffer[bufferPointer + 1], picture8Bit, width);
                 bufferPointer += 2;
+                if (result != 0)
+                {
+                    printf("buildPictureArrayCompressedFailed x: %d y: %d result: %d\n", x, y, result);
+                    return 1;
+                }
+                
             }
             if (bufferPointer < 0) {
             printf("buildPictureArrayCompressedFailed\n");

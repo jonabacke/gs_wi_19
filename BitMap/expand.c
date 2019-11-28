@@ -2,13 +2,18 @@
 #include "stdint.h"
 #include <stdio.h>
 
-uint8_t endOfLine(int32_t *x, int32_t *y, struct tagBitMap8Bit *picture8Bit) 
+uint8_t endOfLine(int32_t *x, int32_t *y, struct tagBitMap8Bit *picture8Bit)
 {
-    while (*x < picture8Bit->infoHeader.biWidth)
-    {
-        picture8Bit->pixel[*y][*x] = 0;
-        *x = *x + 1;
-    }
+    //uint8_t value = picture8Bit->pixel[*y][*x - 1];
+
+    
+    // while (*x < picture8Bit->infoHeader.biWidth)
+    // {
+    //     picture8Bit->pixel[*y][*x] = 0;
+    //     *x = *x + 1;
+    //     perror("reihe füllen");
+    // }
+    
     
     *x = 0;
     *y = *y + 1;
@@ -38,7 +43,7 @@ uint8_t absoluteMode(int32_t * x, int32_t * y, uint8_t* buffer, struct tagBitMap
     *bufferPointer += 2;
     while (amount > 0) 
     {
-        if (*y < picture->infoHeader.biHeight && *x < picture->infoHeader.biWidth)
+        if (*y < picture->infoHeader.biHeight && *x < width)
         {
             picture -> pixel[*y][*x] = buffer[*bufferPointer];
         
@@ -46,8 +51,9 @@ uint8_t absoluteMode(int32_t * x, int32_t * y, uint8_t* buffer, struct tagBitMap
                 *x = *x + 1;
                 if (amount > 1) 
                 {
-                    if (*x >= width - 1) 
+                    if (*x >= width - 1)
                     {
+                        perror("reihe zu lang");
                         *x = 0;
                         *y = *y + 1;
                     }
@@ -57,31 +63,31 @@ uint8_t absoluteMode(int32_t * x, int32_t * y, uint8_t* buffer, struct tagBitMap
         } 
         else
         {
+            printf("absoluteModeFailed\n");
             return 1;
         }
     }
-    *bufferPointer ++;
     printf("absoluteMode\n");
     return 0;
 }
 
 uint8_t writeInPixelBuffer(int32_t * x, int32_t * y, uint8_t amount, uint8_t value, struct tagBitMap8Bit* picture, int32_t width) 
 {
-    while (amount > 0 && *y < picture->infoHeader.biHeight && *x < picture->infoHeader.biWidth) 
+    while (amount > 0 && *y < picture->infoHeader.biHeight && *x < width) 
     {
-        printf("value: %d \t x: %d \t y: %d \t color: %d \tamount: %d \n",value, *x, *y, picture->pixel[*y][*x], amount);
-        picture -> pixel[*y][*x] = value;
+        //printf("value: %d \t x: %d \t y: %d \t color: %d \tamount: %d \n",value, *x, *y, picture->pixel[*y][*x], amount);
+            picture->pixel[*y][*x] = value;
             *x = *x + 1;
-            if (amount - 1 > 0) 
-            {
-                if (*x >= width) 
+            if (amount > 1) {
+                if (*x > width - 1) 
                 {
                     *x = 0;
                     *y = *y + 1;
+                    perror("reihe zu lang");
                 }
             }
             //printf("Value:%d \t x:%d \t y:%d \t color:%d \n", value, *x, *y, picture->pixel[*y][*x - 1]);
-        amount--;
+            amount--;
     }
     if (amount > 0)
     {

@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
       printBitMapInfoHeader( &(picture8Bit->infoHeader));
       //printBitMapColorPalette(picture8Bit);
       //printBitMap8BitPicture(picture8Bit);
-      //getRect(picture8Bit);
+      getRect(picture8Bit);
       printNewBitMapPicture(picture8Bit, argv[1]);
   } else if (picture24Bit != NULL) {
       printBitMapFileHeader( &(picture24Bit->fileHeader));

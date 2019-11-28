@@ -24,10 +24,14 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
     // buffer = (uint8_t* ) malloc(54);
     // writeBuffer(fileNamePicture, 54);
     while (result > 0 && counter < 10){
+        result = 0;
         filePointer = fopen(fileNamePicture, "r+b");
         result += buildFileHeader(filePointer);
         result +=  buildInfoHeader(filePointer);
-        if (infoHeader -> biBitCount == 8) {
+        if (result > 0)
+        {
+            perror("buildheaderFailed");
+        } else if (infoHeader -> biBitCount == 8) {
             bitMap8Bit -> fileHeader = *fileHeader;
             bitMap8Bit -> infoHeader = *infoHeader;
             result += buildPalette(bitMap8Bit, filePointer);
@@ -51,7 +55,7 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
     //if (result == 1) {
     //    return 1;
     //}
-    printf("buildingStruct\n");
+    printf("buildingStruct result: %d\n", result);
     //countRect(bitMap8Bit);
     return 0;
 
