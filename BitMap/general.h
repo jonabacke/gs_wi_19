@@ -69,7 +69,7 @@ typedef struct tagPosition {
 
 typedef struct tagRect {
     struct tagPosition *position;
-    int8_t color;
+    uint8_t color;
     int32_t volume;
 } rect;
 

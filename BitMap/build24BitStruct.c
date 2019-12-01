@@ -56,7 +56,7 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, uint8_t *buf
         
         
     //Reservieren von Heap-Speicher fuer das RGB-Triple-Array (pixelCount * 3 * Byte)
-	picture24Bit -> pixel = (struct tagRGBTriple ***) malloc(sizeof(struct tagRGBTriple) * width * height);
+	//picture24Bit -> pixel = (struct tagRGBTriple ***) malloc(sizeof(struct tagRGBTriple) * width * height);
 		//Fehlerbehandlung
 		if (NULL == picture24Bit -> pixel) {perror("Fehler bei der Speicherzuweisung! \n");}
 		

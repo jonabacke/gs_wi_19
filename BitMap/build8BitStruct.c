@@ -87,11 +87,6 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) 
         int32_t bufferPointer = 0;
         uint8_t wordBoundary = 0;
         result = fread(buffer, 1, picture8Bit->fileHeader.bsSize - offset, filePointer);
-        for (size_t i = 0; i < result; i++)
-        {
-            printf("%x, %x \t", buffer[i], i);
-        }
-        //return 0;
         if (result != picture8Bit->fileHeader.bsSize - offset)
         {
             printf("result: %d \n", result);
@@ -100,7 +95,7 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) 
         }
         result = 0;
         while (isNotFinished && bufferPointer < width * height) {
-            printf("1:%x \t 2:%x \t %x \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
+            //printf("1:%x \t 2:%x \t %x \n", buffer[bufferPointer], buffer[bufferPointer + 1], bufferPointer);
             //printf("bufferPointer1: %d\n", bufferPointer);
             if (buffer[bufferPointer] == 0) {
                 switch (buffer[bufferPointer + 1]) {
@@ -162,7 +157,7 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) 
                 
             }
             if (bufferPointer < 0) {
-            printf("buildPictureArrayCompressedFailed\n");
+            perror("buildPictureArrayCompressedFailed\n");
             return 1;
             }
         }

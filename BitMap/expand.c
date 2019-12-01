@@ -4,27 +4,16 @@
 
 uint8_t endOfLine(int32_t *x, int32_t *y, struct tagBitMap8Bit *picture8Bit)
 {
-    //uint8_t value = picture8Bit->pixel[*y][*x - 1];
-
-    
-    // while (*x < picture8Bit->infoHeader.biWidth)
-    // {
-    //     picture8Bit->pixel[*y][*x] = 0;
-    //     *x = *x + 1;
-    //     perror("reihe füllen");
-    // }
-    
-    
     *x = 0;
     *y = *y + 1;
-    printf("endOfLine\n");
+    //printf("endOfLine\n");
     return 0;
 }
 
 uint8_t endOfBitmap(int8_t *isNotFinished) 
 {
     *isNotFinished = 0;
-    printf("endOfBitmap\n");
+    //printf("endOfBitmap\n");
     return 0;
 }
 
@@ -32,7 +21,7 @@ uint8_t deltaMove(int32_t *x, int32_t *y, int32_t moveX, int32_t moveY)
 {
     *x = *x + moveX;
     *y = *y + moveY;
-    printf("deltaMove\n");
+    //printf("deltaMove\n");
     return 0;
 }
 
@@ -51,23 +40,23 @@ uint8_t absoluteMode(int32_t * x, int32_t * y, uint8_t* buffer, struct tagBitMap
                 *x = *x + 1;
                 if (amount > 1) 
                 {
-                    if (*x >= width - 1)
-                    {
-                        perror("reihe zu lang");
-                        *x = 0;
-                        *y = *y + 1;
-                    }
+                    // if (*x >= width - 1)
+                    // {
+                    //     perror("reihe zu lang");
+                    //     *x = 0;
+                    //     *y = *y + 1;
+                    // }
                 }
             // printf(" x:%d \t y:%d \t color%d  \n", *x, *y, picture->pixel[*y][*x]);
             amount --;
         } 
         else
         {
-            printf("absoluteModeFailed\n");
+            perror("absoluteModeFailed\n");
             return 1;
         }
     }
-    printf("absoluteMode\n");
+    //printf("absoluteMode\n");
     return 0;
 }
 
@@ -79,24 +68,24 @@ uint8_t writeInPixelBuffer(int32_t * x, int32_t * y, uint8_t amount, uint8_t val
             picture->pixel[*y][*x] = value;
             *x = *x + 1;
             if (amount > 1) {
-                if (*x > width - 1) 
-                {
-                    *x = 0;
-                    *y = *y + 1;
-                    perror("reihe zu lang");
-                }
+                // if (*x > width - 1) 
+                // {
+                //     *x = 0;
+                //     *y = *y + 1;
+                //     perror("reihe zu lang");
+                // }
             }
             //printf("Value:%d \t x:%d \t y:%d \t color:%d \n", value, *x, *y, picture->pixel[*y][*x - 1]);
             amount--;
     }
     if (amount > 0)
     {
-        printf("writeInPixelBufferFailed\n");
+        perror("writeInPixelBufferFailed\n");
         return 1;
     } 
     else
     {
-        printf("writeInPixelBuffer\n");
+        //printf("writeInPixelBuffer\n");
         return 0;
     }
     
