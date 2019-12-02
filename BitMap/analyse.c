@@ -21,7 +21,7 @@ static int32_t height;
 
 
 /*
-* Untersucht die Bilddatei auf Rechtecke und ermittelt Anzahl, Farbe und Eckpunktkoordinaten der gefundenen Rechtecke.
+* Untersucht die Bilddatei auf Rechtecke und ermittelt Anzahl, Farbe und Eckpunkt-Koordinaten der gefundenen Rechtecke.
 * Daraus wird außerdem das Volumen errechnet.
 * Rechtecke muessen ausgefuellt und bunt und duerfen nicht weiss sein, da der Hintergrund bereits weiss ist. Ausserdem muessen
 * die Eckpunkte, sowie die Kanten klar definiert sein, also sich in der Farbe von der Umgebung unterscheiden.
@@ -59,10 +59,11 @@ int32_t getRect8Bit(struct tagBitMap8Bit *picture8Bit) {
                     picture8Bit -> pixel[y + 1][x] == color &&
                     picture8Bit -> pixel[y + 1][x + 1] == color) {
                     listPointer = listHead;
+					// Zum Ende der Liste gehen..
                     while (listPointer -> next != NULL) {
                         listPointer = listPointer -> next;
                     }
-					// neues Rechteck anlegen
+					// ..neues Rechteck anlegen
                     listPointer -> next = makeNewRect(picture8Bit, x, y);
                     if (listPointer -> next != NULL) {
                         amount++;
@@ -74,46 +75,34 @@ int32_t getRect8Bit(struct tagBitMap8Bit *picture8Bit) {
     printf("bgClr: %d \n", picture8Bit -> pixel[0][0]);
     printf(" Anzahl: %d \n", amount);
     listPointer = listHead;
-    while (listPointer->next != NULL) {
+    while (listPointer -> next != NULL) {
         listPointer = listPointer -> next;
+		// Printen der gefundenen Rechteck-Daten
         printf("untenRechts: (%d, %d)\t untenLinks: (%d, %d)\t obenRechts: (%d, %d)\t obenlinks: (%d, %d)\t color: %d \t volumen: %d \n", 
         listPointer -> rect -> position -> topRight[0], listPointer -> rect -> position -> topRight[1], listPointer -> rect -> position -> topLeft[0],
         listPointer -> rect -> position -> topLeft[1],  listPointer -> rect -> position -> btmRight[0], listPointer -> rect -> position -> btmRight[1],
         listPointer -> rect -> position -> btmLeft[0],  listPointer -> rect -> position -> btmLeft[1],  listPointer -> rect -> color, listPointer -> rect -> volume);
     }
+
+	// Aendert die Farbe der gruenen Rechtecke zu blau
     colorGreenRectToBlue(picture8Bit);
-
-
-    /*
-        *free structList
-        * 
-        * 
-        */
-    // while (listHead ->next != NULL)
-    // {
-    //     listPointer = listHead -> next;
-    //     while (listPointer->next != NULL)
-    //     {
-    //         listPointer = listPointer ->next;
-    //     }
-    //     //free(listPointer->rect->position);
-    //     //free(listPointer->rect);
-    //     free(listPointer);
-    // }
-    // free(listHead);
-    // listHead = NULL;
-
-    
-
-
-
 
 
     return amount;
 }
 
+
+
+/*
+* Prueft, ob ein Pixel bereits in einem erfassen Rechteck enthalten ist, indem ein Abgleich mit den bereits erfassten Koordinaten stattfindet.
+*
+* @param struct tagRectListElement *listHead		Pointer auf Listenanfang
+* @param int32_t *x									X-Koordinate des Pixels
+* @param int32_t y									Y-Koordinate des Pixels
+*/
 int8_t static isInRect(struct tagRectListElement *listHead, int32_t *x, int32_t y) {
     struct tagRectListElement *listPointer = listHead;
+	
     while (listPointer -> next != NULL) {
         listPointer = listPointer -> next;
         if (*x >= listPointer -> rect -> position -> topLeft[0] && *x <= listPointer -> rect -> position -> topRight[0] &&  //check if in rect left-right
@@ -125,6 +114,15 @@ int8_t static isInRect(struct tagRectListElement *listHead, int32_t *x, int32_t 
     return 0;
 }
 
+
+
+/*
+* Legt ein neues Rechteck an.
+*
+* @param struct tagBitMap8Bit *picture8Bit		8-Bit BildStruct
+* @param int32_t x								X-Koordinate des Pixels
+* @param int32_t y								Y-Koordinate des Pixels
+*/
 struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_t x, int32_t y) {
     struct tagRectListElement *listElement;
 	// Reservieren von Heap-Speicher fuer die Rechteck-Liste
@@ -145,6 +143,7 @@ struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_
 		if (NULL == listElement -> rect -> position) {
 			perror("Fehler bei der Speicherzuweisung! \n");
 		}
+	// Initialisieren der Eckpunkte
     listElement -> rect -> position -> btmLeft[1] = 0;
     listElement -> rect -> position -> btmLeft[0] = 0;
     listElement -> rect -> position -> topLeft[0] = 0;
@@ -171,6 +170,7 @@ struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_
             }
         }
     }
+	// Setzen der Eckpunkte und Kantenlaengen
     if (isRect(x, y, rectHeight, rectWidth, picture8Bit)) {
         listElement -> rect -> position -> topLeft[0] = x;
         listElement -> rect -> position -> topLeft[1] = y;
@@ -194,12 +194,20 @@ struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_
     }
 }
 
+
+
+/*
+* Prueft, ob ein Rechteck der Definition (s.o.) entspricht. 
+* @param int32_t x								Eckpunkt
+* @param int32_t y								Eckpunkt
+* @param int32_t rectHeight						Rechteck-Hoehe
+* @param int32_t rectWidth						Rechteck-Breite
+* @param struct tagBitMap8Bit *picture8Bit		BildStruct
+*/
 uint8_t static isRect(int32_t x, int32_t y, int32_t rectHeight, int32_t rectWidth, struct tagBitMap8Bit *picture8Bit) {
     uint8_t color = picture8Bit -> pixel[y][x];
 
-    /*
-    *   testen ob Rechteck weiss ist
-    */
+    // testen ob Rechteck weiss ist
     if (picture8Bit -> rgbPalette[picture8Bit -> pixel[y][x]].rgbBlue == 0xff &&
 		picture8Bit -> rgbPalette[picture8Bit -> pixel[y][x]].rgbGreen == 0xff &&
 		picture8Bit -> rgbPalette[picture8Bit -> pixel[y][x]].rgbRed == 0xff) {
@@ -237,6 +245,11 @@ uint8_t static isRect(int32_t x, int32_t y, int32_t rectHeight, int32_t rectWidt
     return 1;
 }
 
+
+
+/*
+* Aendert gruene Farbe zu blau
+*/
 uint8_t colorGreenRectToBlue(struct tagBitMap8Bit *picture8Bit)
 {
     for (size_t i = 0; i < 256; i++)
