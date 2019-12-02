@@ -1,6 +1,13 @@
-//
-// Created by jonathan on 13.11.19.
-//
+/*
+* WS19_GSP
+* @task		Aufgabe 3 - Bitmap
+* @author	Jonathan Backes (Matr.-Nr. 2394482), Tobias Hardjowirogo (Matr.-Nr. 2387188)
+* @date		2019/Nov-Dez
+* @version	1
+*/
+
+
+
 #include "buildStruct.h"
 #include "build24BitStruct.h"
 #include "stdint.h"

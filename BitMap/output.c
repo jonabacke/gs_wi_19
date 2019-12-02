@@ -46,7 +46,8 @@ void printBitMapColorPalette(struct tagBitMap8Bit *picture8Bit) {
 
     if (picture8Bit -> infoHeader . biClrUsed == 0) {
         colorUsed = 256;
-    } else {
+    } 
+	else {
         colorUsed = picture8Bit -> infoHeader.biClrUsed;
     }
     for (int i = 0; i < colorUsed; ++i) {
@@ -64,7 +65,8 @@ void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit) {
     int32_t height = picture8Bit -> infoHeader.biHeight;
     if (picture8Bit->infoHeader.biWidth % 4 == 0){
         width = picture8Bit -> infoHeader.biWidth;
-    } else {
+    } 
+	else {
         width = picture8Bit -> infoHeader.biWidth + 4 - picture8Bit -> infoHeader.biWidth % 4;
     }
     for (int32_t i =  0; i < height; i++) {
@@ -79,7 +81,8 @@ void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit) {
     int32_t width = 0;
     if (picture24Bit->infoHeader.biWidth % 4 == 0){
         width = picture24Bit -> infoHeader.biWidth;
-    } else {
+    } 
+	else {
         width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
     }
 
@@ -96,7 +99,8 @@ void printNewBitMap8BitPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *file
     int32_t width = 0;
     if (picture24Bit->infoHeader.biWidth % 4 == 0){
         width = picture24Bit -> infoHeader.biWidth;
-    } else {
+    } 
+	else {
         width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
     }
     uint8_t *buffer = NULL;
@@ -164,29 +168,24 @@ void printNewBitMap8BitPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *file
                     buffer[i + 1] = picture24Bit->rgbPalette[picture24Bit->pixel[j][picture24Bit->infoHeader.biWidth - 1]].rgbGreen;
                     buffer[i + 2] = picture24Bit->rgbPalette[picture24Bit->pixel[j][picture24Bit->infoHeader.biWidth - 1]].rgbRed;
 
-                } else {
+                } 
+				else {
                     buffer[i] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbBlue;
                     buffer[i + 1] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbGreen;
                     buffer[i + 2] = picture24Bit->rgbPalette[picture24Bit->pixel[j][k]].rgbRed;
                 }
                 i = i + 3;
-                //printf("i: %d \t j: %d \t k: %d \n", i, j, k);
             }
 
         }
-
-
-    for (int i = 0; i < bufferSize; ++i) {
-        //printf("buffer: %x \n", buffer[i]);
-    }
+		
     FILE * filePointer;
     int32_t  result;
     uint8_t delimiter[1] = "/";
     uint8_t *ptr;
     uint8_t *speicherPfad = fileNamePicture;
     ptr = strtok(fileNamePicture, delimiter);
-    while (NULL != ptr)
-    {
+    while (NULL != ptr) {
         speicherPfad = ptr;
         ptr = strtok(NULL, delimiter);
     }
