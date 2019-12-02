@@ -9,10 +9,6 @@
 #include "output.h"
 #include <malloc.h>
 
-static int32_t width = 0;
-static int32_t height = 0;
-static int32_t pixelCount = 0;
-
 
 
 /*
@@ -27,34 +23,29 @@ static int32_t pixelCount = 0;
 uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePointer) {
     
 
+    //Lokale Variablen
+    int32_t width = 0;
+    int32_t height = 0;
+    int32_t offset = picture24Bit->fileHeader.bfOfBits;
+
+
+
     //Bildhoehe und -breite aus infoHeader auslesen
-    if (picture24Bit->infoHeader.biWidth % 4 == 0){
-        width = picture24Bit -> infoHeader.biWidth;
+    if (picture24Bit->infoHeader.biWidth % 4 == 0) {
+        width = picture24Bit->infoHeader.biWidth;
     } else {
-        width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
+        width = picture24Bit->infoHeader.biWidth + 4 - picture24Bit->infoHeader.biWidth % 4;
     }
-    height = picture24Bit -> infoHeader.biHeight;
+    height = picture24Bit->infoHeader.biHeight;
 
-    
-    //Anzahl der Pixel
-    pixelCount = width * height;
 
-    //for(uint8_t i = 0; i < 10000; i++){
-    //printf("buffertest %d \n", buffer[i]);
-    //}
-    
-        printf("24Bit-Bildhoehe: %d\n", height);
-        printf("24Bit-Bildbreite: %d\n", width);
-        printf("Anzahl der Bildpixel: %d\n", pixelCount);
+    printf("24Bit-Bildhoehe: %dPixel\n", height);
+    printf("24Bit-Bildbreite: %dPixel\n", width);
+    printf("Anzahl der Bildpixel: %d\n", height * width);
+    printf("tagRGBTripleSize %d Byte\n", sizeof(struct tagRGBTriple));
 
-    
-      
-	printf("tagRGBTripleSize %d\n", sizeof(struct tagRGBTriple));
-        printf("pixel: %d\n", sizeof(struct tagRGBTriple) * width * height);
-        printf("pixel[i]: %d\n", sizeof(struct tagRGBTriple) * width);
-        printf("pixel[i][j]: %d\n", sizeof (struct tagRGBTriple));
-        
-        
+
+
     //Reservieren von Heap-Speicher fuer das RGB-Triple-Array (pixelCount * 3 * Byte)
 	picture24Bit -> pixel = (struct tagRGBTriple ***) calloc(height * width, sizeof(struct tagRGBTriple));
 		//Fehlerbehandlung
@@ -66,19 +57,34 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePo
 			if (NULL == picture24Bit -> pixel[i]) {perror("Fehler bei der Speicherzuweisung! \n");}
         
 			
-		// for (int j = 0; j < width; ++j) {
-		// 	picture24Bit -> pixel[i][j] = (struct tagRGBTriple*) calloc (sizeof (struct tagRGBTriple)); 
-		// 		//Fehlerbehandlung
-		// 		if (NULL == picture24Bit -> pixel[i][j]) {perror("Fehler bei der Speicherzuweisung! \n");}
-		// }
+		for (int j = 0; j < width; ++j) {
+			picture24Bit -> pixel[i][j] = (struct tagRGBTriple*) malloc (sizeof (struct tagRGBTriple)); 
+				//Fehlerbehandlung
+				if (NULL == picture24Bit -> pixel[i][j]) {perror("Fehler bei der Speicherzuweisung! \n");}
+		}
+
 	}
-    perror("malloc war erfolgreich");
-    uint32_t result = 0;
-    //Schreiben der RGB-Daten in die einzelnen Pixel   	
-    for (size_t i = 0; i < height; i++)
-    {
-        for (size_t j = 0; j < width; j++)
-        {
+	 
+    
+	printf("Test0! \n");
+	
+	
+	
+        printf("Test1! \n");
+
+    
+ 
+        printf("Test2! \n");
+        
+    //Schreiben der RGB-Daten in die einzelnen Pixel   
+    for (uint8_t j = 54; j < (54 + pixelCount * 3); j = j + 3) {
+        for (uint32_t y = height - 1; y >= 0; y--) {
+            for (uint32_t x = 0; x < width; x++) {		
+                picture24Bit -> pixel[y][x] -> rgbBlue =    buffer[j];     printf("buffer b %d \n", buffer[j]);     
+                picture24Bit -> pixel[y][x] -> rgbGreen =   buffer[j + 1]; printf("buffer g %d \n", buffer[j + 1]);
+                picture24Bit -> pixel[y][x] -> rgbRed =     buffer[j + 2]; printf("buffer r %d \n", buffer[j + 2]);
+               
+            }
         }
             //result += fread(picture24Bit->pixel[i], 3, width, filePointer);
             
@@ -106,10 +112,10 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePo
     // for (int i = 0; i < height; i++) {
     //     free(picture24Bit->pixel[i]);
 	
-    //     for (int j = 0; j < width; j++) {
-    //         free(picture24Bit -> pixel[i][j]); 	
-	// }
-    // }
+        for (int j = 0; j < width; j++) {
+            free(picture24Bit -> pixel[i][j]); 	
+	}
+    }
     
     return 0;
 }
