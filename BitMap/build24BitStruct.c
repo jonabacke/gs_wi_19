@@ -44,7 +44,7 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePo
     printf("Anzahl der Bildpixel: %d\n", height * width);
     printf("tagRGBTripleSize %d Byte\n", sizeof(struct tagRGBTriple));
 
-
+    int32_t pixelCount = width * height;
 
     //Reservieren von Heap-Speicher fuer das RGB-Triple-Array (pixelCount * 3 * Byte)
 	picture24Bit -> pixel = (struct tagRGBTriple ***) calloc(height * width, sizeof(struct tagRGBTriple));
@@ -57,39 +57,11 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePo
 			if (NULL == picture24Bit -> pixel[i]) {perror("Fehler bei der Speicherzuweisung! \n");}
         
 			
-		for (int j = 0; j < width; ++j) {
-			picture24Bit -> pixel[i][j] = (struct tagRGBTriple*) malloc (sizeof (struct tagRGBTriple)); 
-				//Fehlerbehandlung
-				if (NULL == picture24Bit -> pixel[i][j]) {perror("Fehler bei der Speicherzuweisung! \n");}
-		}
 
 	}
-	 
+	  
+    int32_t result = 0;
     
-	printf("Test0! \n");
-	
-	
-	
-        printf("Test1! \n");
-
-    
- 
-        printf("Test2! \n");
-        
-    //Schreiben der RGB-Daten in die einzelnen Pixel   
-    for (uint8_t j = 54; j < (54 + pixelCount * 3); j = j + 3) {
-        for (uint32_t y = height - 1; y >= 0; y--) {
-            for (uint32_t x = 0; x < width; x++) {		
-                picture24Bit -> pixel[y][x] -> rgbBlue =    buffer[j];     printf("buffer b %d \n", buffer[j]);     
-                picture24Bit -> pixel[y][x] -> rgbGreen =   buffer[j + 1]; printf("buffer g %d \n", buffer[j + 1]);
-                picture24Bit -> pixel[y][x] -> rgbRed =     buffer[j + 2]; printf("buffer r %d \n", buffer[j + 2]);
-               
-            }
-        }
-            //result += fread(picture24Bit->pixel[i], 3, width, filePointer);
-            
-        
-    }
     
     result += fread(picture24Bit->pixel, 3, 1 * width * height, filePointer);
     if (result != pixelCount*3)
@@ -101,21 +73,14 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePo
 
     printf("size: %d \n", sizeof(picture24Bit->pixel[0][0]));
     //printf("Color pixel[0][0] = %x\n", picture24Bit->pixel[0][0]);
-    uint8_t test = picture24Bit->pixel[0]->rgbBlue;
+    uint8_t test = picture24Bit->pixel[0];
     printf("%d\n", test);
     printf("done! \n");
 
-    //Freigeben des reservierten Heap-Speicherplatzes
-    
-    // free(picture24Bit -> pixel);
-    
-    // for (int i = 0; i < height; i++) {
-    //     free(picture24Bit->pixel[i]);
-	
-        for (int j = 0; j < width; j++) {
-            free(picture24Bit -> pixel[i][j]); 	
-	}
-    }
+
+
+
+
     
     return 0;
 }
