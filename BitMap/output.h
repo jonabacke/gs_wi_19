@@ -24,6 +24,8 @@ void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit);
 
 void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit);
 
-void printNewBitMapPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *fileNamePicture);
+void printNewBitMap8BitPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *fileNamePicture);
+
+void printNewBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit, uint8_t *fileNamePicture);
 
 #endif //BITMAP_OUTPUT_H

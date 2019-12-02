@@ -91,7 +91,7 @@ void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit) {
     }
 }
 
-void printNewBitMapPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *fileNamePicture) {
+void printNewBitMap8BitPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *fileNamePicture) {
     int32_t height = picture24Bit -> infoHeader.biHeight;
     int32_t width = 0;
     if (picture24Bit->infoHeader.biWidth % 4 == 0){
@@ -198,27 +198,57 @@ void printNewBitMapPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *fileName
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+
+void printNewBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit, uint8_t *fileNamePicture)
+{
+    FILE * filePointer;
+    int32_t  result = 0;
+    uint8_t delimiter[1] = "/";
+    uint8_t *ptr;
+    uint8_t *speicherPfad = fileNamePicture;
+    ptr = strtok(fileNamePicture, delimiter);
+    while (NULL != ptr)
+    {
+        speicherPfad = ptr;
+        ptr = strtok(NULL, delimiter);
+    }
+    printf("SpeicherPfad: %s \n", speicherPfad);
+    filePointer = fopen(speicherPfad, "wb");
+
+    result += fwrite(&(picture24Bit->fileHeader), 1, 14, filePointer);
+    result += fwrite(&(picture24Bit->infoHeader), 1, 40, filePointer);
+    for (size_t i = 0; i < picture24Bit->infoHeader.biHeight; i++)
+    {
+        result += fwrite(picture24Bit->pixel[i], 3, picture24Bit->infoHeader.biWidth, filePointer) * 3;
+    }
+    
+    
+
+
+
+
+
+    printf("Result %d \t BufferSize: %d \n", result, picture24Bit->fileHeader.bsSize);
+    fclose(filePointer);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -47,12 +47,12 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePo
     int32_t pixelCount = width * height;
 
     //Reservieren von Heap-Speicher fuer das RGB-Triple-Array (pixelCount * 3 * Byte)
-	picture24Bit -> pixel = (struct tagRGBTriple ***) calloc(height * width, sizeof(struct tagRGBTriple));
+	picture24Bit -> pixel = (struct tagRGBTriple **) calloc(height * width, sizeof(struct tagRGBTriple));
 		//Fehlerbehandlung
 		if (NULL == picture24Bit -> pixel) {perror("Fehler bei der Speicherzuweisung! \n");}
 		
 	for (int i = 0; i < height; ++i) {
-		picture24Bit->pixel[i] = (struct tagRGBTriple **) calloc (width, sizeof(struct tagRGBTriple));
+		picture24Bit->pixel[i] = (struct tagRGBTriple *) calloc (width, sizeof(struct tagRGBTriple));
 			//Fehlerbehandlung
 			if (NULL == picture24Bit -> pixel[i]) {perror("Fehler bei der Speicherzuweisung! \n");}
         
@@ -61,27 +61,35 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePo
 	}
 	  
     int32_t result = 0;
+    for (size_t i = 0; i < height; i++)
+    {
+        for (size_t j = 0; j < width; j++)
+        {
+            
+        }
+        result += fread(picture24Bit->pixel[i], 3, width, filePointer);
+        
+    }
     
     
-    result += fread(picture24Bit->pixel, 3, 1 * width * height, filePointer);
-    if (result != pixelCount*3)
+    //result += fread(picture24Bit->pixel[0], 3, 1 * width * height, filePointer);
+    if (result != pixelCount)
     {
         printf("result: %d pixelCount: %d \n", result, pixelCount);
         perror("Fehler beim lesen der Bildpunkte");
         //return 1;
     }
 
-    printf("size: %d \n", sizeof(picture24Bit->pixel[0][0]));
+    //printf("size: %d \n", sizeof(picture24Bit->pixel[0]->rgbBlue));
     //printf("Color pixel[0][0] = %x\n", picture24Bit->pixel[0][0]);
-    uint8_t test = picture24Bit->pixel[0];
-    printf("%d\n", test);
+    
     printf("done! \n");
 
 
 
 
 
-    
+
     return 0;
 }
 

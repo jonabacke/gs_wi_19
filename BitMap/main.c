@@ -49,15 +49,23 @@ int main(int argc, char **argv) {
       //printBitMapColorPalette(picture8Bit);
       //printBitMap8BitPicture(picture8Bit);
       getRect8Bit(picture8Bit);
-      printNewBitMapPicture(picture8Bit, argv[i]);
+      printNewBitMap8BitPicture(picture8Bit, argv[i]);
   } else if (picture24Bit->fileHeader.bfType == 0x4d42) {
       printBitMapFileHeader( &(picture24Bit->fileHeader));
       printBitMapInfoHeader( &(picture24Bit->infoHeader));
       //printBitMap24BitPicture(picture24Bit);
+      //getRect24Bit(picture24Bit);
+
+      printNewBitMap24BitPicture(picture24Bit, argv[i]);
+
   } else {
     printf("Irgendwas ist bei diesem Bild schief gelaufen\n");
   }
+
+  
   }
+
+
 
   /* analyse Struct */
 

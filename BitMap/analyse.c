@@ -217,33 +217,50 @@ uint8_t colorGreenRectToBlue(struct tagBitMap8Bit *picture8Bit)
 
 
 
-int32_t getRect24Bit(struct tagBitMap24Bit *picture24Bit)
-{
-    struct tagRectListElement *listHead = NULL;
-    listHead = (struct tagRectListElement*) malloc(sizeof(struct tagRectListElement));
-    struct tagRectListElement *listPointer = NULL;
+// int32_t getRect24Bit(struct tagBitMap24Bit *picture24Bit)
+// {
+//     struct tagRectListElement *listHead = NULL;
+//     listHead = (struct tagRectListElement*) malloc(sizeof(struct tagRectListElement));
+//     struct tagRectListElement *listPointer = NULL;
 
-    listHead->next = NULL;
+//     listHead->next = NULL;
 
-    int32_t amount = 0;
-    width = 0;
-    height = 0;
-    uint32_t color = 0;
+//     int32_t amount = 0;
+//     width = 0;
+//     height = 0;
+//     uint32_t color = 0;
 
-    width = picture24Bit->infoHeader.biWidth;
-    height = picture24Bit->infoHeader.biHeight;
+//     width = picture24Bit->infoHeader.biWidth;
+//     height = picture24Bit->infoHeader.biHeight;
 
-    for (int32_t y = 0; y < height - 1; y++)
-    {
-        for (int32_t x = 0; x < width - 1; x++)
-        {
-            if (!isInRect(listHead, &x, y))
-            {
-            //    color = picture24Bit->pixel[y][x];
-            }
+//     for (int32_t y = 0; y < height - 1; y++)
+//     {
+//         for (int32_t x = 0; x < width - 1; x++)
+//         {
+//             //if (!isInRect(listHead, &x, y))
+//             {
+//                 color = picture24Bit->pixel[y]->rgbBlue << 16 | picture24Bit->pixel[y]->rgbGreen << 8 | picture24Bit->pixel[y]->rgbRed;
+
+//                 if (picture24Bit->pixel[y] + 3 == color &&
+//                     picture24Bit->pixel[y + 1] == color &&
+//                     picture24Bit->pixel[y + 1] + 3 == color) {
+//                     listPointer = listHead;
+//                     while (listPointer->next != NULL) {
+//                         listPointer = listPointer->next;
+//                     }
+//                     listPointer->next = makeNewRect(picture24Bit, x, y);
+//                     if (listPointer->next != NULL)
+//                     {
+//                         amount++;
+//                     }
+//                     //printf(" amount: %d \n", amount);
+//                 }
+//             }
             
-        }
+//         }
         
-    }
+//     }
+
+//     printf("%x %x \n", picture24Bit->pixel[0]->rgbBlue, picture24Bit->pixel[0]->rgbBlue + 3);
     
-}
+// }
