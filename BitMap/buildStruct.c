@@ -1,6 +1,12 @@
-//
-// Created by jonathan on 13.11.19.
-//
+/*
+* WS19_GSP
+* @task		Aufgabe 3 - Bitmap
+* @author	Jonathan Backes (Matr.-Nr. 2394482), Tobias Hardjowirogo (Matr.-Nr. 2387188)
+* @date		2019/Nov-Dez
+* @version	1
+*/
+
+
 
 #include "buildStruct.h"
 #include <stdio.h>
@@ -37,6 +43,7 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
             bitMap8Bit -> infoHeader = *infoHeader;
             result += buildPalette(bitMap8Bit, filePointer);
             result += buildPictureArray(bitMap8Bit, filePointer);
+<<<<<<< HEAD
         } else if (infoHeader -> biBitCount == 24) 
         {
             bitMap24Bit -> fileHeader = *fileHeader;
@@ -44,6 +51,14 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
             result += build24BitPictureArray(bitMap24Bit, filePointer);
             //printBitMapFileHeader( &(bitMap24Bit->fileHeader));
             //printBitMapInfoHeader( &(bitMap24Bit->infoHeader));
+=======
+        } else if (infoHeader -> biBitCount == 24) {
+            bitMap24Bit -> fileHeader = *fileHeader;
+            bitMap24Bit -> infoHeader = *infoHeader;
+            printBitMapFileHeader( &(bitMap24Bit->fileHeader));
+            printBitMapInfoHeader( &(bitMap24Bit->infoHeader));
+            build24BitPictureArray(bitMap24Bit, filePointer);
+>>>>>>> master
         }
         counter ++;
         fclose(filePointer);
