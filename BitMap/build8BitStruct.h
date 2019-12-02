@@ -19,6 +19,4 @@ uint8_t buildPalette(struct tagBitMap8Bit* picture8Bit, FILE* filePointer);
 
 uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE* filePointer);
 
-struct tagBitMap24Bit* concert8BitTo24Bit(struct tagBitMap8Bit bitMap8Bit);
-
 #endif //BITMAP_BUILD8BITSTRUCT_H

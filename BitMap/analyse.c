@@ -23,6 +23,8 @@ static int32_t height;
 /*
 * Untersucht die Bilddatei auf Rechtecke und ermittelt Anzahl, Farbe und Eckpunktkoordinaten der gefundenen Rechtecke.
 * Daraus wird außerdem das Volumen errechnet.
+* Rechtecke muessen ausgefuellt und bunt und duerfen nicht weiss sein, da der Hintergrund bereits weiss ist. Ausserdem muessen
+* die Eckpunkte, sowie die Kanten klar definiert sein, also sich in der Farbe von der Umgebung unterscheiden.
 * 
 * @param struct tagBitMap8Bit *picture8Bit	Pointer auf BildStruct
 */
@@ -31,8 +33,12 @@ int32_t getRect8Bit(struct tagBitMap8Bit *picture8Bit) {
 	struct tagRectListElement *listHead = NULL;
 	// Reservieren von Heap-Speicher fuer die Rechteck-Liste
     listHead = (struct tagRectListElement*) malloc(sizeof(struct tagRectListElement));
+		// Fehlerbehandlung
+		if (NULL == listHead) {
+			perror("Fehler bei der Speicherzuweisung! \n");
+		}
     struct tagRectListElement *listPointer = NULL;
-    listHead->next = NULL;
+    listHead -> next = NULL;
 
     int32_t amount = 0;
     width = 0;
@@ -42,11 +48,13 @@ int32_t getRect8Bit(struct tagBitMap8Bit *picture8Bit) {
     width = picture8Bit -> infoHeader.biWidth;
     height = picture8Bit -> infoHeader.biHeight;
 	
-	// Das Bild-Struct wird systematisch pixelweise 
+	// Das Bild-Struct wird systematisch pixelweise auf Rechtecke untersucht
     for (int32_t y = 0; y < height - 1; y++) {
         for (int32_t x = 0; x < width - 1; x++) {
+			// Pointer schon in einem gefundenen Rechteck?
             if (!isInRect(listHead, &x, y)) {
                 color = picture8Bit -> pixel[y][x];
+				// Pruefen der Farbwerte der angrenzenden Pixel
                 if (picture8Bit -> pixel[y][x + 1] == color &&
                     picture8Bit -> pixel[y + 1][x] == color &&
                     picture8Bit -> pixel[y + 1][x + 1] == color) {
@@ -54,6 +62,7 @@ int32_t getRect8Bit(struct tagBitMap8Bit *picture8Bit) {
                     while (listPointer -> next != NULL) {
                         listPointer = listPointer -> next;
                     }
+					// neues Rechteck anlegen
                     listPointer -> next = makeNewRect(picture8Bit, x, y);
                     if (listPointer -> next != NULL) {
                         amount++;
@@ -62,7 +71,7 @@ int32_t getRect8Bit(struct tagBitMap8Bit *picture8Bit) {
             }
         }
     }
-    printf("bgClr: %d \n", picture8Bit->pixel[0][0]);
+    printf("bgClr: %d \n", picture8Bit -> pixel[0][0]);
     printf(" Anzahl: %d \n", amount);
     listPointer = listHead;
     while (listPointer->next != NULL) {
@@ -92,31 +101,46 @@ int8_t static isInRect(struct tagRectListElement *listHead, int32_t *x, int32_t 
 
 struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_t x, int32_t y) {
     struct tagRectListElement *listElement;
+	// Reservieren von Heap-Speicher fuer die Rechteck-Liste
     listElement = (struct tagRectListElement*) malloc(sizeof(struct tagRectListElement));
-    listElement->rect = (struct tagRect*) malloc(sizeof(struct tagRect));
-    listElement->rect->position = (struct tagPosition*) malloc(sizeof(struct tagPosition));
-    listElement->rect->position->btmLeft[0] = 0;
-    listElement->rect->position->btmLeft[1] = 0;
-    listElement->rect->position->topLeft[0] = 0;
-    listElement->rect->position->topLeft[1] = 0;
-    listElement->rect->position->btmRight[0] = 0;
-    listElement->rect->position->btmRight[1] = 0;
-    listElement->rect->position->topRight[0] = 0;
-    listElement->rect->position->topRight[1] = 0;
-    listElement->rect->color = 0;
-    listElement->rect->volume = 0;
+		// Fehlerbehandlung
+		if (NULL == listElement) {
+			perror("Fehler bei der Speicherzuweisung! \n");
+		}
+	// Reservieren von Heap-Speicher fuer die Elemente der Rechteck-Liste
+    listElement -> rect = (struct tagRect*) malloc(sizeof(struct tagRect));
+		// Fehlerbehandlung
+		if (NULL == listElement -> rect) {
+			perror("Fehler bei der Speicherzuweisung! \n");
+		}
+	// Reservieren von Heap-Speicher fuer die Positionsdaten der Rechtecke	
+    listElement -> rect -> position = (struct tagPosition*) malloc(sizeof(struct tagPosition));
+		// Fehlerbehandlung
+		if (NULL == listElement -> rect -> position) {
+			perror("Fehler bei der Speicherzuweisung! \n");
+		}
+    listElement -> rect -> position -> btmLeft[1] = 0;
+    listElement -> rect -> position -> btmLeft[0] = 0;
+    listElement -> rect -> position -> topLeft[0] = 0;
+    listElement -> rect -> position -> topLeft[1] = 0;
+    listElement -> rect -> position -> btmRight[0] = 0;
+    listElement -> rect -> position -> btmRight[1] = 0;
+    listElement -> rect -> position -> topRight[0] = 0;
+    listElement -> rect -> position -> topRight[1] = 0;
+    listElement -> rect -> color = 0;
+    listElement -> rect -> volume = 0;
     int32_t rectWidth = width - 1; 
     int32_t rectHeight = height - 1; 
-    uint8_t color = picture8Bit->pixel[y][x];
+    uint8_t color = picture8Bit -> pixel[y][x];
 
     for (int32_t i = y; i < rectHeight; i++) {
         for (int32_t j = x; j < rectWidth; j++) {
 
-            if (color != picture8Bit->pixel[i][j] && i == y) {
+            if (color != picture8Bit -> pixel[i][j] && i == y) {
                 // i==y erste Zeile checken um die Breite herauszufinden
                 rectWidth = j - 1;
             } 
-			else if (color != picture8Bit->pixel[i][j]) {
+			else if (color != picture8Bit -> pixel[i][j]) {
                 rectHeight = i - 1;
             }
         }
@@ -135,9 +159,10 @@ struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_
         listElement -> next = NULL;
         return listElement;
     }
+	// Kein Rechteck --> Heap-Speicher wieder freigeben
     else {
-        free(listElement->rect->position);
-        free(listElement->rect);
+        free(listElement -> rect -> position);
+        free(listElement -> rect);
         free(listElement);
         return NULL;
     }

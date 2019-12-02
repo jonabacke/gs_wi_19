@@ -19,31 +19,34 @@
 
 
 /*
- * Ein Buffer uebertraegt Byteweise Bilddaten. Die ersten 56 Bytes bestehen aus Header-Informationen
- * und werden an dieser Stelle ignoriert. Die folgenden Bytes stellen die Farbinformationen fuer die
- * einzelnen Pixel des Bildes. Jeweils 3 aufeinander folgende Bytes stellen die Blau- Grün- und Rotwerte eines Pixels.
- * Jene werden jeweils in einem Struct gebuendelt und schließlich in einem Array, das die Bilddaten enthaelt gespeichert.
+ * Eine 24-Bit-Bilddatei besteht aus 56 Byte Header-Informationen, die an dieser Stelle ignoriert werden, da sie bereits
+ * in dem buildStruct-Modul ausgelesen werden. Die darauf folgenden Bytes stellen die Farbinformationen fuer die
+ * einzelnen Pixel des Bildes. Jeweils 3 aufeinander folgende Bytes stellen die Blau- Gruen- und Rotwerte eines Pixels.
+ * Jene werden jeweils in einem Struct gebuendelt und schließlich in einem Pixel-Array, das die Farbwerte enthaelt gespeichert.
  *
- * @param   *picture24Bit   Zeiger auf das Bild
- * @param   *buffer         Zeiger auf den Buffer, der Byteweise die Bilddaten uebertraegt
+ * @param 	struct tagBitMap24Bit *picture24Bit   	Zeiger auf das BildStruct
+ * @param   FILE *filePointer         				Zeiger auf die eingelesene Bildatei
  * */
 uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePointer) {
-    
 
     //Lokale Variablen
     int32_t width = 0;
     int32_t height = 0;
     int32_t offset = picture24Bit->fileHeader.bfOfBits;
-
-
+	int32_t pixelCount = 0;
+	int32_t result = 0;
 
     //Bildhoehe und -breite aus infoHeader auslesen
-    if (picture24Bit->infoHeader.biWidth % 4 == 0) {
-        width = picture24Bit->infoHeader.biWidth;
-    } else {
-        width = picture24Bit->infoHeader.biWidth + 4 - picture24Bit->infoHeader.biWidth % 4;
+    if (picture24Bit -> infoHeader.biWidth % 4 == 0) {
+        width = picture24Bit -> infoHeader.biWidth;
+    } 
+	else {
+        width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
     }
-    height = picture24Bit->infoHeader.biHeight;
+    height = picture24Bit -> infoHeader.biHeight;
+	
+	pixelCount = width * height;
+
 
 
     printf("24Bit-Bildhoehe: %dPixel\n", height);
@@ -51,51 +54,36 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePo
     printf("Anzahl der Bildpixel: %d\n", height * width);
     printf("tagRGBTripleSize %d Byte\n", sizeof(struct tagRGBTriple));
 
-    int32_t pixelCount = width * height;
-
+   
+   
     //Reservieren von Heap-Speicher fuer das RGB-Triple-Array (pixelCount * 3 * Byte)
 	picture24Bit -> pixel = (struct tagRGBTriple **) calloc(height * width, sizeof(struct tagRGBTriple));
 		//Fehlerbehandlung
-		if (NULL == picture24Bit -> pixel) {perror("Fehler bei der Speicherzuweisung! \n");}
+		if (NULL == picture24Bit -> pixel) {
+			perror("Fehler bei der Speicherzuweisung! \n");
+		}
 		
 	for (int i = 0; i < height; ++i) {
 		picture24Bit->pixel[i] = (struct tagRGBTriple *) calloc (width, sizeof(struct tagRGBTriple));
 			//Fehlerbehandlung
-			if (NULL == picture24Bit -> pixel[i]) {perror("Fehler bei der Speicherzuweisung! \n");}
-        
-			
-
+			if (NULL == picture24Bit -> pixel[i]) {
+				perror("Fehler bei der Speicherzuweisung! \n");
+			}
 	}
 	  
-    int32_t result = 0;
-    for (size_t i = 0; i < height; i++)
-    {
-        for (size_t j = 0; j < width; j++)
-        {
-            
-        }
-        result += fread(picture24Bit->pixel[i], 3, width, filePointer);
-        
+
+	// Auslesen der Bilddatei und schreiben der RGB-Triple in das Pixel-Array 
+    result = 0;
+    for (size_t i = 0; i < height; i++) {
+        result += fread(picture24Bit -> pixel[i], 3, width, filePointer);    
     }
-    
-    
-    //result += fread(picture24Bit->pixel[0], 3, 1 * width * height, filePointer);
-    if (result != pixelCount)
-    {
+    // Fehlerbehandlung
+    if (result != pixelCount) {
         printf("result: %d pixelCount: %d \n", result, pixelCount);
         perror("Fehler beim lesen der Bildpunkte");
-        //return 1;
     }
-
-    //printf("size: %d \n", sizeof(picture24Bit->pixel[0]->rgbBlue));
-    //printf("Color pixel[0][0] = %x\n", picture24Bit->pixel[0][0]);
     
     printf("done! \n");
-
-
-
-
-
 
     return 0;
 }

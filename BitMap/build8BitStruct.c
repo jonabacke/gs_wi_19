@@ -40,6 +40,9 @@ uint8_t buildPalette(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) {
 	
 	//Reservieren von Heap-Speicher
     picture8Bit -> rgbPalette = (struct tagRGBQuad *) malloc( colorUsed * sizeof(struct tagRGBQuad));
+	if (NULL == picture8Bit -> rgbPalette) {
+		perror("Fehler bei der Speicherzuweisung! \n");
+	}
 	
 	//Lesen der Farbpalette aus der Datei und Speichern in dem entsprechenden Struct
     result = fread(picture8Bit->rgbPalette, 1, colorUsed * 4, filePointer);
@@ -57,7 +60,9 @@ uint8_t buildPalette(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) {
 
 
 /*
-* Liest eine 8-Bit Bilddatei und 
+* Liest eine 8-Bit Bilddatei ein und prueft, ob diese komprimiert ist. Wenn dies der Fall ist,
+* wird sie zunaechst dekomprimiert und anschliessend, ansonsten werden direkt die Farbwerte in einem 
+* Pixel-Array gespeichert.
 *
 * @param struct tagBitMap8Bit *picture8Bit		Pointer auf BildStruct
 * @param FILE *filePointer						Pointer auf Bilddatei
@@ -84,13 +89,13 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) 
 	
 	//Reservieren von Heap-Speicher fuer Pixel-Array
     picture8Bit -> pixel = (uint8_t **)malloc(width * height);
-    if (NULL == picture8Bit->pixel) {
+    if (NULL == picture8Bit -> pixel) {
         perror("");
         return 1;
     }    
     for (int i = 0; i < height; ++i) {
         picture8Bit -> pixel[i] = (uint8_t*) malloc(width);
-        if (NULL == picture8Bit->pixel[i]) {
+        if (NULL == picture8Bit -> pixel[i]) {
             perror("");
             return 1;
         }
@@ -102,7 +107,7 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) 
     if (picture8Bit -> infoHeader.biCompression == 0) {
         int32_t result = 0;
         for (int32_t i = 0; i < height; i++) {
-            result = fread(picture8Bit->pixel[i], 1, width, filePointer);
+            result = fread(picture8Bit -> pixel[i], 1, width, filePointer);
 
             if (result != width) {
                 printf("buildPictureArrayUncompressedFailed\n");
@@ -123,8 +128,8 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) 
         int32_t bufferPointer = 0;
         uint8_t wordBoundary = 0;
 		
-        result = fread(buffer, 1, picture8Bit->fileHeader.bsSize - offset, filePointer);
-        if (result != picture8Bit->fileHeader.bsSize - offset) {
+        result = fread(buffer, 1, picture8Bit -> fileHeader.bsSize - offset, filePointer);
+        if (result != picture8Bit -> fileHeader.bsSize - offset) {
             printf("result: %d \n", result);
             perror("buffer hat falsch gelesen");
             return 1;
@@ -175,16 +180,5 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) 
     return 0;
 }
 
-struct tagBitMap24Bit* concert8BitTo24Bit(struct tagBitMap8Bit bitMap8Bit) {
-  /*
-    struct tagBitMap24Bit *bitMap24Bit = NULL;
-    bitMap24Bit = (struct tagBitMap24Bit*) malloc(sizeof(struct tagBitMap24Bit));
-    bitMap24Bit -> fileHeader = (struct tagBitMapFileHeader*) malloc(sizeof(struct tagBitMapFileHeader));
-    bitMap24Bit -> fileHeader = bitMap8Bit -> fileHeader;
-    bitMap24Bit -> infoHeader = (struct tagBitMapInfoHeader*) malloc(sizeof(struct tagBitMapInfoHeader));
-    bitMap24Bit -> infoHeader = bitMap8Bit -> infoHeader;
 
 
-*/
-
-}
