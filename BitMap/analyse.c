@@ -210,3 +210,6 @@ uint8_t colorGreenRectToBlue(struct tagBitMap8Bit *picture8Bit)
     }
     
 }
+
+
+//TODO: getRect, makeNewRect, isRect, colorGreenRectToBlue fuer 24Bit

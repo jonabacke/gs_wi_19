@@ -37,11 +37,11 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
             result += buildPalette(bitMap8Bit, filePointer);
             result += buildPictureArray(bitMap8Bit, filePointer);
         } else if (infoHeader -> biBitCount == 24) {
-            //bitMap24Bit -> fileHeader = *fileHeader;
-            //bitMap24Bit -> infoHeader = *infoHeader;
-            //build24BitPictureArray(bitMap24Bit, buffer);
-            //printBitMapFileHeader( &(bitMap24Bit->fileHeader));
-            //printBitMapInfoHeader( &(bitMap24Bit->infoHeader));
+            bitMap24Bit -> fileHeader = *fileHeader;
+            bitMap24Bit -> infoHeader = *infoHeader;
+            printBitMapFileHeader( &(bitMap24Bit->fileHeader));
+            printBitMapInfoHeader( &(bitMap24Bit->infoHeader));
+            build24BitPictureArray(bitMap24Bit, filePointer);
         }
         counter ++;
         fclose(filePointer);

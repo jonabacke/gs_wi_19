@@ -8,6 +8,6 @@
 #define BITMAP_BUILD24BITSTRUCT_H
 
 
-uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, uint8_t *buffer);
+uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePointer);
 
 #endif //BITMAP_BUILD24BITSTRUCT_H

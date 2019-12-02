@@ -4,5 +4,7 @@
         "analyse.h": "c",
         "stdio.h": "c",
         "general.h": "c"
-    }
+    },
+    "c-cpp-compile-run.run-args": "-mno-ms-bitfields -std=c99",
+    "c-cpp-compile-run.run-in-external-terminal": true
 }
