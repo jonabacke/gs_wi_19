@@ -31,15 +31,17 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
         if (result > 0 || infoHeader->biHeight > 10000 || infoHeader->biWidth > 10000)
         {
             perror("buildheaderFailed");
-        } else if (infoHeader -> biBitCount == 8) {
+        } else if (infoHeader -> biBitCount == 8) 
+        {
             bitMap8Bit -> fileHeader = *fileHeader;
             bitMap8Bit -> infoHeader = *infoHeader;
             result += buildPalette(bitMap8Bit, filePointer);
             result += buildPictureArray(bitMap8Bit, filePointer);
-        } else if (infoHeader -> biBitCount == 24) {
-            //bitMap24Bit -> fileHeader = *fileHeader;
-            //bitMap24Bit -> infoHeader = *infoHeader;
-            //build24BitPictureArray(bitMap24Bit, buffer);
+        } else if (infoHeader -> biBitCount == 24) 
+        {
+            bitMap24Bit -> fileHeader = *fileHeader;
+            bitMap24Bit -> infoHeader = *infoHeader;
+            result += build24BitPictureArray(bitMap24Bit, filePointer);
             //printBitMapFileHeader( &(bitMap24Bit->fileHeader));
             //printBitMapInfoHeader( &(bitMap24Bit->infoHeader));
         }

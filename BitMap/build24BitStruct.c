@@ -24,7 +24,7 @@ static int32_t pixelCount = 0;
  * @param   *picture24Bit   Zeiger auf das Bild
  * @param   *buffer         Zeiger auf den Buffer, der Byteweise die Bilddaten uebertraegt
  * */
-uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, uint8_t *buffer) {
+uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, FILE *filePointer) {
     
 
     //Bildhoehe und -breite aus infoHeader auslesen
@@ -56,60 +56,60 @@ uint8_t build24BitPictureArray(struct tagBitMap24Bit *picture24Bit, uint8_t *buf
         
         
     //Reservieren von Heap-Speicher fuer das RGB-Triple-Array (pixelCount * 3 * Byte)
-	//picture24Bit -> pixel = (struct tagRGBTriple ***) malloc(sizeof(struct tagRGBTriple) * width * height);
+	picture24Bit -> pixel = (struct tagRGBTriple **) calloc(height * width, sizeof(struct tagRGBTriple));
 		//Fehlerbehandlung
 		if (NULL == picture24Bit -> pixel) {perror("Fehler bei der Speicherzuweisung! \n");}
 		
 	for (int i = 0; i < height; ++i) {
-		picture24Bit->pixel[i] = (struct tagRGBTriple **) malloc (sizeof(struct tagRGBTriple)*3 * width);
+		picture24Bit->pixel[i] = (struct tagRGBTriple *) calloc (width, sizeof(struct tagRGBTriple));
 			//Fehlerbehandlung
 			if (NULL == picture24Bit -> pixel[i]) {perror("Fehler bei der Speicherzuweisung! \n");}
         
 			
-		for (int j = 0; j < width; ++j) {
-			picture24Bit -> pixel[i][j] = (struct tagRGBTriple*) malloc (sizeof (struct tagRGBTriple)); 
-				//Fehlerbehandlung
-				if (NULL == picture24Bit -> pixel[i][j]) {perror("Fehler bei der Speicherzuweisung! \n");}
-		}
-
+		// for (int j = 0; j < width; ++j) {
+		// 	picture24Bit -> pixel[i][j] = (struct tagRGBTriple*) calloc (sizeof (struct tagRGBTriple)); 
+		// 		//Fehlerbehandlung
+		// 		if (NULL == picture24Bit -> pixel[i][j]) {perror("Fehler bei der Speicherzuweisung! \n");}
+		// }
 	}
-	 
-    
-	printf("Test0! \n");
-	
-	
-	
-        printf("Test1! \n");
-
-    
- 
-        printf("Test2! \n");
-        
-    //Schreiben der RGB-Daten in die einzelnen Pixel   
-    for (uint8_t j = 54; j < (54 + pixelCount * 3); j = j + 3) {
-        for (uint32_t y = height - 1; y >= 0; y--) {
-            for (uint32_t x = 0; x < width; x++) {		
-                picture24Bit -> pixel[y][x] -> rgbBlue =    buffer[j];     printf("buffer b %d \n", buffer[j]);     
-                picture24Bit -> pixel[y][x] -> rgbGreen =   buffer[j + 1]; printf("buffer g %d \n", buffer[j + 1]);
-                picture24Bit -> pixel[y][x] -> rgbRed =     buffer[j + 2]; printf("buffer r %d \n", buffer[j + 2]);
-               
-            }
+    perror("malloc war erfolgreich");
+    uint32_t result = 0;
+    //Schreiben der RGB-Daten in die einzelnen Pixel   	
+    for (size_t i = 0; i < height; i++)
+    {
+        for (size_t j = 0; j < width; j++)
+        {
         }
+            //result += fread(picture24Bit->pixel[i], 3, width, filePointer);
+            
+        
+    }
+    
+    result += fread(picture24Bit->pixel, 3, 1 * width * height, filePointer);
+    if (result != pixelCount*3)
+    {
+        printf("result: %d pixelCount: %d \n", result, pixelCount);
+        perror("Fehler beim lesen der Bildpunkte");
+        //return 1;
     }
 
+    printf("Color pixel[0][0] = %x\n", picture24Bit->pixel[0][0].rgbBlue);
+    printf("size: %d \n", sizeof(picture24Bit->pixel[0][0]));
 
-        printf("done! \n");
+
+    printf("done! \n");
 
     //Freigeben des reservierten Heap-Speicherplatzes
-    free(picture24Bit -> pixel);
     
-    for (int i = 0; i < height; i++) {
-        free(picture24Bit->pixel[i]);
+    // free(picture24Bit -> pixel);
+    
+    // for (int i = 0; i < height; i++) {
+    //     free(picture24Bit->pixel[i]);
 	
-        for (int j = 0; j < width; j++) {
-            free(picture24Bit -> pixel[i][j]); 	
-	}
-    }
+    //     for (int j = 0; j < width; j++) {
+    //         free(picture24Bit -> pixel[i][j]); 	
+	// }
+    // }
     
     return 0;
 }

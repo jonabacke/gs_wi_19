@@ -55,7 +55,7 @@ typedef struct tagBitMap8Bit {
 typedef struct tagBitMap24Bit {
   struct tagBitMapFileHeader fileHeader;
   struct tagBitMapInfoHeader infoHeader;
-  struct tagRGBTriple **pixel[];
+  struct tagRGBTriple **pixel;
 } bitMap24Bit;
 
 
@@ -77,4 +77,5 @@ typedef struct tagRectListElement {
     struct tagRect *rect;
     struct tagRectListElement *next;
 }rectListElement;
+
 #endif

@@ -11,7 +11,7 @@
 static int32_t width;
 static int32_t height;
 
-int32_t getRect(struct tagBitMap8Bit *picture8Bit) {
+int32_t getRect8Bit(struct tagBitMap8Bit *picture8Bit) {
     struct tagRectListElement *listHead = NULL;
     listHead = (struct tagRectListElement*) malloc(sizeof(struct tagRectListElement));
     struct tagRectListElement *listPointer = NULL;
@@ -205,6 +205,39 @@ uint8_t colorGreenRectToBlue(struct tagBitMap8Bit *picture8Bit)
             perror("found");
             picture8Bit->rgbPalette[i].rgbBlue = 0xff;
             picture8Bit->rgbPalette[i].rgbGreen = 0x00;
+        }
+        
+    }
+    
+}
+
+
+
+int32_t getRect24Bit(struct tagBitMap24Bit *picture24Bit)
+{
+    struct tagRectListElement *listHead = NULL;
+    listHead = (struct tagRectListElement*) malloc(sizeof(struct tagRectListElement));
+    struct tagRectListElement *listPointer = NULL;
+
+    listHead->next = NULL;
+
+    int32_t amount = 0;
+    width = 0;
+    height = 0;
+    uint32_t color = 0;
+
+    width = picture24Bit->infoHeader.biWidth;
+    height = picture24Bit->infoHeader.biHeight;
+
+    for (int32_t y = 0; y < height - 1; y++)
+    {
+        for (int32_t x = 0; x < width - 1; x++)
+        {
+            if (!isInRect(listHead, &x, y))
+            {
+            //    color = picture24Bit->pixel[y][x];
+            }
+            
         }
         
     }

@@ -39,14 +39,14 @@ int main(int argc, char **argv) {
       //printBitMapInfoHeader( &(picture8Bit->infoHeader));
       //printBitMapColorPalette(picture8Bit);
       //printBitMap8BitPicture(picture8Bit);
-      getRect(picture8Bit);
+      getRect8Bit(picture8Bit);
       printNewBitMapPicture(picture8Bit, argv[i]);
   } else if (picture24Bit->fileHeader.bfType == 0x4d42) {
-      //printBitMapFileHeader( &(picture24Bit->fileHeader));
-      //printBitMapInfoHeader( &(picture24Bit->infoHeader));
+      printBitMapFileHeader( &(picture24Bit->fileHeader));
+      printBitMapInfoHeader( &(picture24Bit->infoHeader));
       //printBitMap24BitPicture(picture24Bit);
   } else {
-    printf("Irgendwas ist schief gelaufen\n");
+    printf("Irgendwas ist bei diesem Bild schief gelaufen\n");
   }
   }
 
