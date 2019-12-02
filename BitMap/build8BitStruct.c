@@ -90,13 +90,11 @@ uint8_t buildPictureArray(struct tagBitMap8Bit *picture8Bit, FILE *filePointer) 
 	//Reservieren von Heap-Speicher fuer Pixel-Array
     picture8Bit -> pixel = (uint8_t **)malloc(width * height);
     if (NULL == picture8Bit -> pixel) {
-        perror("");
         return 1;
     }    
     for (int i = 0; i < height; ++i) {
         picture8Bit -> pixel[i] = (uint8_t*) malloc(width);
         if (NULL == picture8Bit -> pixel[i]) {
-            perror("");
             return 1;
         }
     }

@@ -10,7 +10,9 @@
 
 #include "expand.h"
 #include "stdint.h"
-#include <stdio.h>
+#include <stdio.h>#
+
+
 
 uint8_t endOfLine(int32_t *x, int32_t *y, struct tagBitMap8Bit *picture8Bit) {
     *x = 0;

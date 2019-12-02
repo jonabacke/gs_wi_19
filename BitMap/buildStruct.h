@@ -15,13 +15,26 @@
 #include "general.h"
 #include <stdio.h>
 
-uint8_t buildingStruct(uint8_t*, struct tagBitMap8Bit*, struct tagBitMap24Bit*);
+/**
+ * @brief hier wird das Bild eingelesen und weiterverarbeitet
+ * @param fileNamePicture name und Pfad zur Datei
+ * @param picture8Bit 8BitPointer
+ * @param picture24Bit 24BitPointer
+ * */
+uint8_t buildingStruct(uint8_t* fileNamePicture, struct tagBitMap8Bit*picture8Bit, struct tagBitMap24Bit*picture24Bit);
 
-static uint8_t writeBuffer(uint8_t *, uint32_t);
+/**
+ * @brief hier wird der fileheader aus der DAtei gelesen und in das BildStruct geschrieben
+ * @param filePointer Filepointer zur DAtei wird übergeben
+ * */
+static uint8_t buildFileHeader(FILE*filePointer);
 
-static uint8_t buildFileHeader(FILE*);
 
-static uint8_t buildInfoHeader(FILE*);
+/**
+ * @brief hier wird der infoheader aus der DAtei gelesen und in das BildStruct geschrieben
+ * @param filePointer Filepointer zur DAtei wird übergeben
+ * */
+static uint8_t buildInfoHeader(FILE*filePointer);
 
 
 #endif

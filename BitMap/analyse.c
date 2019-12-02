@@ -244,7 +244,6 @@ uint8_t colorGreenRectToBlue(struct tagBitMap8Bit *picture8Bit)
         if (picture8Bit -> rgbPalette[i].rgbBlue == 0x00 &&
             picture8Bit -> rgbPalette[i].rgbGreen == 0xff &&
             picture8Bit -> rgbPalette[i].rgbRed == 0x00) {
-				perror("found");
 				picture8Bit -> rgbPalette[i].rgbBlue = 0xff;
 				picture8Bit -> rgbPalette[i].rgbGreen = 0x00;
         }      
