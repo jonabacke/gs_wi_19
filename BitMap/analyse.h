@@ -15,7 +15,9 @@
 #define BITMAP_ANALYSE_H
 
 int32_t getRect8Bit(struct tagBitMap8Bit *picture8Bit);
+
 int32_t getRect24Bit(struct tagBitMap24Bit *picture24Bit);
+
 struct tagRectListElement* makeNewRect(struct tagBitMap8Bit *picture8Bit, int32_t x, int32_t y);
 
 int8_t static isInRect(struct tagRectListElement *istHead, int32_t *x, int32_t y);
