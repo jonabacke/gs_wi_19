@@ -58,7 +58,7 @@ buildPalette ColorUsed: 256
  width: 24 	 height: 14 
 buildPictureArrayCompressed
 buildingStruct result: 0
-d0203590
+2080b590
 bgClr: 0 
  Anzahl: 1 
 untenRechts: (21, 0)	 untenLinks: (0, 0)	 obenRechts: (21, 13)	 obenlinks: (0, 13)	 color: 0 	 volumen: 308 
@@ -72,7 +72,7 @@ buildPalette ColorUsed: 256
  width: 24 	 height: 14 
 buildPictureArrayUncompressed
 buildingStruct result: 0
-d0203590
+2080b590
 bgClr: 0 
  Anzahl: 1 
 untenRechts: (21, 0)	 untenLinks: (0, 0)	 obenRechts: (21, 13)	 obenlinks: (0, 13)	 color: 0 	 volumen: 308 
@@ -86,7 +86,7 @@ buildPalette ColorUsed: 256
  width: 60 	 height: 50 
 buildPictureArrayCompressed
 buildingStruct result: 0
-d0203590
+2080b590
 bgClr: 0 
  Anzahl: 4 
 untenRechts: (25, 0)	 untenLinks: (0, 0)	 obenRechts: (25, 49)	 obenlinks: (0, 49)	 color: 0 	 volumen: 1300 
@@ -103,7 +103,7 @@ buildPalette ColorUsed: 256
  width: 60 	 height: 50 
 buildPictureArrayUncompressed
 buildingStruct result: 0
-d0203d70
+2080bd70
 bgClr: 0 
  Anzahl: 4 
 untenRechts: (25, 0)	 untenLinks: (0, 0)	 obenRechts: (25, 49)	 obenlinks: (0, 49)	 color: 0 	 volumen: 1300 
@@ -122,7 +122,7 @@ Anzahl der Bildpixel: 307200
 tagRGBTripleSize 3 Byte
 done! 
 buildingStruct result: 0
-d0361e20
+20969e20
 --------------BitMapHeaderFile---------------
  4d42 	 must be 4d42 
  921654 	 bytes big 
@@ -153,7 +153,7 @@ buildPalette ColorUsed: 256
  width: 640 	 height: 480 
 buildPictureArrayCompressed
 buildingStruct result: 0
-d0203590
+2080b590
 bgClr: 215 
  Anzahl: 2 
 untenRechts: (639, 0)	 untenLinks: (536, 0)	 obenRechts: (639, 80)	 obenlinks: (536, 80)	 color: 180 	 volumen: 8424 
@@ -220,7 +220,7 @@ buildPalette ColorUsed: 256
  width: 640 	 height: 480 
 buildPictureArrayCompressed
 buildingStruct result: 0
-d0203c30
+2080bc30
 bgClr: 215 
  Anzahl: 2 
 untenRechts: (566, 43)	 untenLinks: (302, 43)	 obenRechts: (566, 287)	 obenlinks: (302, 287)	 color: 180 	 volumen: 64925 
@@ -229,117 +229,3 @@ SpeicherPfad: 640x480_8_bit_komprimiert_einfaches_testbild.bmp
 Result 921654 	 BufferSize: 921654 
 ----------------Bild 10----------------
 testBilder/testBilder/640x480_8_bit_komprimiert_mehr_farben.bmp
-buildFileHeader
-buildInfoHeader
-buildPalette ColorUsed: 256
- width: 640 	 height: 480 
-buildPictureArrayCompressed
-buildingStruct result: 0
-d0203c30
-bgClr: 0 
- Anzahl: 4 
-untenRechts: (596, 17)	 untenLinks: (540, 17)	 obenRechts: (596, 302)	 obenlinks: (540, 302)	 color: 7 	 volumen: 16302 
-untenRechts: (539, 43)	 untenLinks: (302, 43)	 obenRechts: (539, 287)	 obenlinks: (302, 287)	 color: 8 	 volumen: 58310 
-untenRechts: (291, 191)	 untenLinks: (38, 191)	 obenRechts: (291, 272)	 obenlinks: (38, 272)	 color: 9 	 volumen: 20828 
-untenRechts: (280, 273)	 untenLinks: (56, 273)	 obenRechts: (280, 369)	 obenlinks: (56, 369)	 color: 6 	 volumen: 21825 
-SpeicherPfad: 640x480_8_bit_komprimiert_mehr_farben.bmp 
-Result 921654 	 BufferSize: 921654 
-----------------Bild 11----------------
-testBilder/testBilder/640x480_8_bit_komprimiert_rechtecke_am_bildrand.bmp
-buildFileHeader
-buildInfoHeader
-buildPalette ColorUsed: 256
- width: 640 	 height: 480 
-buildPictureArrayCompressed
-buildingStruct result: 0
-d0203c30
-bgClr: 215 
- Anzahl: 4 
-untenRechts: (385, 0)	 untenLinks: (247, 0)	 obenRechts: (385, 92)	 obenlinks: (247, 92)	 color: 180 	 volumen: 12927 
-untenRechts: (639, 96)	 untenLinks: (501, 96)	 obenRechts: (639, 299)	 obenlinks: (501, 299)	 color: 180 	 volumen: 28356 
-untenRechts: (31, 230)	 untenLinks: (0, 230)	 obenRechts: (31, 282)	 obenlinks: (0, 282)	 color: 30 	 volumen: 1696 
-untenRechts: (418, 460)	 untenLinks: (381, 460)	 obenRechts: (418, 479)	 obenlinks: (381, 479)	 color: 30 	 volumen: 760 
-SpeicherPfad: 640x480_8_bit_komprimiert_rechtecke_am_bildrand.bmp 
-Result 921654 	 BufferSize: 921654 
-----------------Bild 12----------------
-testBilder/testBilder/640x480_8_bit_komprimiert_rotes_rechteck_fehlt_pixel_am_rand.bmp
-buildFileHeader
-buildInfoHeader
-buildPalette ColorUsed: 256
- width: 640 	 height: 480 
-buildPictureArrayCompressed
-buildingStruct result: 0
-d0203c30
-bgClr: 215 
- Anzahl: 1 
-untenRechts: (536, 97)	 untenLinks: (358, 97)	 obenRechts: (536, 300)	 obenlinks: (358, 300)	 color: 180 	 volumen: 36516 
-SpeicherPfad: 640x480_8_bit_komprimiert_rotes_rechteck_fehlt_pixel_am_rand.bmp 
-Result 921654 	 BufferSize: 921654 
-----------------Bild 13----------------
-testBilder/testBilder/640x480_8_bit_nicht_komprimiert_ohne_padding_bytes_einfaches_testbild.bmp
-buildFileHeader
-buildInfoHeader
-buildPalette ColorUsed: 256
- width: 640 	 height: 480 
-buildPictureArrayUncompressed
-buildingStruct result: 0
-d0203c30
-bgClr: 215 
- Anzahl: 2 
-untenRechts: (566, 43)	 untenLinks: (302, 43)	 obenRechts: (566, 287)	 obenlinks: (302, 287)	 color: 180 	 volumen: 64925 
-untenRechts: (280, 230)	 untenLinks: (56, 230)	 obenRechts: (280, 369)	 obenlinks: (56, 369)	 color: 30 	 volumen: 31500 
-SpeicherPfad: 640x480_8_bit_nicht_komprimiert_ohne_padding_bytes_einfaches_testbild.bmp 
-Result 921654 	 BufferSize: 921654 
-----------------Bild 14----------------
-testBilder/testBilder/640x480_IM_HEADER_biWidth_viel_zu_goss_8_bit_komprimiert.bmp
-buildFileHeader
-buildInfoHeader
-buildingStruct result: 0
-d0203c30
-Irgendwas ist bei diesem Bild schief gelaufen
-----------------Bild 15----------------
-testBilder/testBilder/640x480_IM_HEADER_biWidth_zu_goss_8_bit_komprimiert.bmp
-buildFileHeader
-buildInfoHeader
-buildingStruct result: 0
-d0a0c590
-Irgendwas ist bei diesem Bild schief gelaufen
-----------------Bild 16----------------
-testBilder/testBilder/6x10_8_bit_nicht_komprimiert_mit_padding_bytes.bmp
-buildFileHeader
-buildInfoHeader
-buildPalette ColorUsed: 256
- width: 8 	 height: 10 
-buildPictureArrayUncompressed
-buildingStruct result: 0
-d0a0c660
-bgClr: 0 
- Anzahl: 1 
-untenRechts: (5, 0)	 untenLinks: (0, 0)	 obenRechts: (5, 9)	 obenlinks: (0, 9)	 color: 0 	 volumen: 60 
-SpeicherPfad: 6x10_8_bit_nicht_komprimiert_mit_padding_bytes.bmp 
-Result 294 	 BufferSize: 294 
-----------------Bild 17----------------
-testBilder/testBilder/720_400_8_bit_komprimiert.bmp
-buildFileHeader
-buildInfoHeader
-buildPalette ColorUsed: 256
- width: 720 	 height: 400 
-buildPictureArrayCompressed
-buildingStruct result: 0
-d0a0c660
-bgClr: 215 
- Anzahl: 2 
-untenRechts: (624, 175)	 untenLinks: (521, 175)	 obenRechts: (624, 255)	 obenlinks: (521, 255)	 color: 180 	 volumen: 8424 
-untenRechts: (210, 363)	 untenLinks: (40, 363)	 obenRechts: (210, 399)	 obenlinks: (40, 399)	 color: 30 	 volumen: 6327 
-SpeicherPfad: 720_400_8_bit_komprimiert.bmp 
-Result 864054 	 BufferSize: 864054 
-----------------Bild 18----------------
-testBilder/testBilder/BildSignaturDefekt.bmp
-buildFileHeader
-buildInfoHeader
-buildPalette ColorUsed: 256
- width: 640 	 height: 480 
-buildPictureArrayCompressed
-buildingStruct result: 0
-d0a0c660
-Irgendwas ist bei diesem Bild schief gelaufen

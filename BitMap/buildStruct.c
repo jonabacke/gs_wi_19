@@ -27,8 +27,6 @@ uint8_t buildingStruct(uint8_t *fileNamePicture, struct tagBitMap8Bit* bitMap8Bi
     int8_t counter = 0;
     fileHeader = (struct tagBitMapFileHeader *) malloc(sizeof(struct tagBitMapFileHeader));
     infoHeader = (struct tagBitMapInfoHeader *) malloc(sizeof(struct tagBitMapInfoHeader));
-    // buffer = (uint8_t* ) malloc(54);
-    // writeBuffer(fileNamePicture, 54);
     while (result > 0 && counter < 10){
         result = 0;
         filePointer = fopen(fileNamePicture, "r+b");
