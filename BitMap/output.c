@@ -13,6 +13,10 @@
 #include <stdio.h>
 #include <string.h>
 
+
+/*
+* Printed den File-Header der Bilddatei auf der Konsole
+*/
 void printBitMapFileHeader(struct tagBitMapFileHeader * fileHeader) {
     printf("--------------BitMapHeaderFile---------------\n");
     printf(" %x \t must be 4d42 \n", fileHeader -> bfType);
@@ -23,6 +27,11 @@ void printBitMapFileHeader(struct tagBitMapFileHeader * fileHeader) {
     printf("---------------------------------------------\n");
 }
 
+
+
+/*
+* Printed den Info-Header der Bilddatei auf der Konsole
+*/
 void printBitMapInfoHeader(struct tagBitMapInfoHeader * infoHeader) {
     printf("--------------BitMapHeaderInfo---------------\n");
     printf(" %d \t should be 40 \n", infoHeader -> biSize);
@@ -39,6 +48,11 @@ void printBitMapInfoHeader(struct tagBitMapInfoHeader * infoHeader) {
     printf("---------------------------------------------\n");
 }
 
+
+
+/*
+* Printed die Farbpalette der Bilddatei auf der Konsole
+*/
 void printBitMapColorPalette(struct tagBitMap8Bit *picture8Bit) {
     printf("-----------------BildPalette-----------------\n");
 
@@ -60,6 +74,11 @@ void printBitMapColorPalette(struct tagBitMap8Bit *picture8Bit) {
     printf("---------------------------------------------\n");
 }
 
+
+
+/*
+* Printed die Farbwerte einer 8-Bit-Bilddatei auf der Konsole
+*/
 void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit) {
     int32_t width = 0;
     int32_t height = picture8Bit -> infoHeader.biHeight;
@@ -77,16 +96,21 @@ void printBitMap8BitPicture(struct tagBitMap8Bit *picture8Bit) {
     }
 }
 
+
+
+/*
+* Printed die Farbwerte einer 24-Bit-Bilddatei auf der Konsole
+*/
 void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit) {
     int32_t width = 0;
-    if (picture24Bit->infoHeader.biWidth % 4 == 0){
+    if (picture24Bit -> infoHeader.biWidth % 4 == 0){
         width = picture24Bit -> infoHeader.biWidth;
     } 
 	else {
         width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
     }
 
-    for (int32_t i = picture24Bit->infoHeader.biHeight - 1; i >= 0; i--) {
+    for (int32_t i = picture24Bit -> infoHeader.biHeight - 1; i >= 0; i--) {
         for (int32_t j = 0; j < width; j++) {
             printf("%x \t", picture24Bit -> pixel[i][j]);
         }
@@ -94,18 +118,33 @@ void printBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit) {
     }
 }
 
+
+
+/*
+* Umwandlung einer 8-Bit-Bilddatei in eine 24-Bit-Bilddatei und Speichern der umgewandelten Bilddatei.
+*
+* @param struct tagBitMap8Bit *picture24Bit		Pointer auf 24-Bit-BildStruct
+* @param uint8_t *fileNamePicture				Pointer auf Dateinamen
+*/
 void printNewBitMap8BitPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *fileNamePicture) {
     int32_t height = picture24Bit -> infoHeader.biHeight;
     int32_t width = 0;
+	
     if (picture24Bit->infoHeader.biWidth % 4 == 0){
         width = picture24Bit -> infoHeader.biWidth;
     } 
 	else {
         width = picture24Bit -> infoHeader.biWidth + 4 - picture24Bit -> infoHeader.biWidth % 4;
     }
+	
     uint8_t *buffer = NULL;
     int32_t bufferSize = (width * picture24Bit->infoHeader.biHeight * 3 + 54);
     buffer = (uint8_t*) malloc(bufferSize);
+		//Fehlerbehandlung
+		if (NULL == buffer) {
+			perror("Fehler bei der Speicherzuweisung! \n");
+		}
+	// Schreiben des File-Headers
     buffer[0] = picture24Bit->fileHeader.bfType;
     buffer[1] = picture24Bit->fileHeader.bfType >> 8;
     buffer[2] = bufferSize;
@@ -120,6 +159,7 @@ void printNewBitMap8BitPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *file
     buffer[11] = 0;
     buffer[12] = 0;
     buffer[13] = 0;
+	// Schreiben des Info-Headers
     buffer[14] = picture24Bit->infoHeader.biSize;
     buffer[15] = picture24Bit->infoHeader.biSize >> 8;
     buffer[16] = picture24Bit->infoHeader.biSize >> 16;
@@ -160,6 +200,7 @@ void printNewBitMap8BitPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *file
     buffer[51] = 0;
     buffer[52] = 0;
     buffer[53] = 0;
+	// Schreiben der Farbwerte
     int32_t i = 54;
         for (int j = 0; j < height; j++) {
             for (int k = 0; k < width; k++) {
@@ -197,12 +238,13 @@ void printNewBitMap8BitPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *file
 
     free(buffer);
     buffer = NULL;
-
-
-
 }
 
 
+
+/*
+* Speichern eines 24-Bit-BildStructs in einer 24-Bit-Bilddatei.
+*/
 void printNewBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit, uint8_t *fileNamePicture)
 {
     FILE * filePointer;
@@ -226,12 +268,6 @@ void printNewBitMap24BitPicture(struct tagBitMap24Bit *picture24Bit, uint8_t *fi
         result += fwrite(picture24Bit->pixel[i], 3, picture24Bit->infoHeader.biWidth, filePointer) * 3;
     }
     
-    
-
-
-
-
-
     printf("Result %d \t BufferSize: %d \n", result, picture24Bit->fileHeader.bsSize);
     fclose(filePointer);
 }
