@@ -74,6 +74,32 @@ int32_t getRect8Bit(struct tagBitMap8Bit *picture8Bit) {
     }
     colorGreenRectToBlue(picture8Bit);
 
+
+    /*
+        *free structList
+        * 
+        * 
+        */
+    // while (listHead ->next != NULL)
+    // {
+    //     listPointer = listHead -> next;
+    //     while (listPointer->next != NULL)
+    //     {
+    //         listPointer = listPointer ->next;
+    //     }
+    //     //free(listPointer->rect->position);
+    //     //free(listPointer->rect);
+    //     free(listPointer);
+    // }
+    // free(listHead);
+    // listHead = NULL;
+
+    
+
+
+
+
+
     return amount;
 }
 

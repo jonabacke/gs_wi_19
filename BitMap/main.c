@@ -50,39 +50,41 @@ int main(int argc, char **argv) {
       //printBitMap8BitPicture(picture8Bit);
       getRect8Bit(picture8Bit);
       printNewBitMap8BitPicture(picture8Bit, argv[i]);
+      for (int32_t j = 0; j < picture8Bit->infoHeader.biHeight; j++)
+      {
+        free(picture8Bit->pixel[j]);
+        picture8Bit->pixel[j] = NULL;
+      }
+      free(picture8Bit->pixel);
+      picture8Bit->pixel = NULL;
+      free(picture8Bit->rgbPalette);
+      picture8Bit->rgbPalette = NULL;
+      free(picture8Bit);
+      picture8Bit = NULL;
   } else if (picture24Bit->fileHeader.bfType == 0x4d42) {
       printBitMapFileHeader( &(picture24Bit->fileHeader));
       printBitMapInfoHeader( &(picture24Bit->infoHeader));
       //printBitMap24BitPicture(picture24Bit);
       //getRect24Bit(picture24Bit);
-
       printNewBitMap24BitPicture(picture24Bit, argv[i]);
+
+
+
+      for (int32_t i = 0; i < picture24Bit->infoHeader.biHeight; i++)
+      {
+        free(picture24Bit->pixel[i]);
+        picture24Bit->pixel[i] = NULL;
+      }
+      free(picture24Bit->pixel);
+      picture24Bit->pixel = NULL;
+      free(picture24Bit);
+      picture24Bit = NULL;
 
   } else {
     printf("Irgendwas ist bei diesem Bild schief gelaufen\n");
   }
 
-  
+
   }
-
-
-
-  /* analyse Struct */
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
   return resultSum;
 }

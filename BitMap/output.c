@@ -195,6 +195,9 @@ void printNewBitMap8BitPicture(struct tagBitMap8Bit *picture24Bit, uint8_t *file
     printf("Result %d \t BufferSize: %d \n", result, bufferSize);
     fclose(filePointer);
 
+    free(buffer);
+    buffer = NULL;
+
 
 
 }
