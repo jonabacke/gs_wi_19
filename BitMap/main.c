@@ -1,3 +1,12 @@
+/*
+* WS19_GSP
+* @task		Aufgabe 3 - Bitmap
+* @author	Jonathan Backes (Matr.-Nr. 2394482), Tobias Hardjowirogo (Matr.-Nr. 2387188)
+* @date		2019/Nov-Dez
+* @version	1
+*/
+
+
 
 #include <stdio.h>
 #include "general.h"
